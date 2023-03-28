@@ -1,2 +1,11 @@
-<p>App component</p>
+<div class="w-full mt-2 ml-2 font-bold">
+  Wishlist app
+  <button
+    *ngIf="isLoggedIn$ | async"
+    (click)="logOutTry()"
+    class="mr-6 rounded-md border bg-red-100 p-2 hover:bg-red-300 float-right"
+  >
+    Log out
+  </button>
+</div>
 <router-outlet></router-outlet>
