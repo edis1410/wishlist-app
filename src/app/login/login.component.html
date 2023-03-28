@@ -1,0 +1,62 @@
+<div
+  class="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8"
+>
+  <div class="w-full max-w-md space-y-8">
+    <h2
+      class="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900"
+    >
+      Log in to your account
+    </h2>
+    <form
+      class="mt-8 space-y-6"
+      [formGroup]="loginForm"
+      (ngSubmit)="attemptLogin()"
+    >
+      <div class="-space-y-px rounded-md shadow-sm">
+        <input
+          id="email-address"
+          type="email"
+          formControlName="email"
+          required
+          class="relative block w-full rounded-t-md border-0 py-1.5 pl-2 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+          placeholder="Email address"
+        />
+        <input
+          id="password"
+          type="password"
+          formControlName="password"
+          required
+          class="relative block w-full rounded-b-md border-0 py-1.5 pl-2 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+          placeholder="Password"
+        />
+      </div>
+      <div
+        class="relative block w-full rounded border border-red-400 bg-red-100 px-4 py-3 text-red-700"
+        *ngIf="email?.invalid && (email?.dirty || email?.touched)"
+      >
+        <div *ngIf="email?.errors?.['required']">The email is required</div>
+        <div *ngIf="email?.errors?.['email']">The email format is not correct</div>
+      </div>
+      <div
+        class="relative block w-full rounded border border-red-400 bg-red-100 px-4 py-3 text-red-700"
+        *ngIf="password?.invalid && (password?.dirty || password?.touched)"
+      >
+        <div *ngIf="password?.errors?.['required']">The password is required</div>
+      </div>
+      <div
+        class="relative block w-full rounded border border-red-400 bg-red-100 px-4 py-3 text-red-700"
+        *ngIf="logErr === true"
+      >
+        The email or password is wrong.
+      </div>
+      <button
+        type="submit"
+        class="group relative flex w-full cursor-pointer justify-center rounded-md bg-indigo-600 py-2 px-3 text-sm font-semibold text-white hover:bg-indigo-500"
+      >
+        Log in
+      </button>
+    </form>
+    <div class="relative block text-center"> Don't have an account?</div>
+    <div class="relative block text-center text-blue-600 dark:text-blue-500 hover:underline cursor-pointer" [routerLink]="['/register']"> Register here!</div>
+  </div>
+</div>
