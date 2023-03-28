@@ -7,12 +7,14 @@ import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
+import { ClickOutsideDirective } from './click-outside.directive';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    ClickOutsideDirective,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
   ],

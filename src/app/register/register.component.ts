@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginService } from '../login.service';
@@ -8,12 +8,15 @@ import { LoginService } from '../login.service';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent {
+export class RegisterComponent implements OnInit{
   constructor(
     private login: LoginService,
     private fb: FormBuilder,
     private router: Router
   ) {}
+  ngOnInit(): void {
+    this.login.logOut();
+  }
 
   public regErr: boolean = false;
 

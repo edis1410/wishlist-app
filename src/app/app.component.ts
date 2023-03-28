@@ -8,9 +8,11 @@ import { LoginService } from './login.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent {
+export class AppComponent{
   title = 'wishlist-app';
-  isLoggedIn$: Observable<boolean> = this.login.isLoggedIn();
+  public showDropdown = false;
+  public email: string = ""
+
 
   constructor(public login: LoginService, private router: Router) {}
   public logOutTry(): void {
@@ -18,5 +20,10 @@ export class AppComponent {
       () => this.router.navigate(['login']),
       () => console.log('failed logout')
     );
+  }
+  
+
+  public dropdownToggle(): void {
+    this.showDropdown = !this.showDropdown;
   }
 }

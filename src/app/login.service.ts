@@ -7,6 +7,7 @@ import {
   signOut,
   User,
   user,
+  onAuthStateChanged,
 } from '@angular/fire/auth';
 import { map, Observable } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
@@ -16,10 +17,21 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class LoginService {
+  public email: string = "";
+  public loggedIn: boolean = false;
+
   constructor(private auth: Auth, public router: Router, public jwtHelper: JwtHelperService,) {
     this.user$ = user(this.auth);
+    onAuthStateChanged(this.auth, (user) => {
+      if(user){
+        this.loggedIn = true;
+        this.email = user.email!
+      }
+      else{
+        this.loggedIn = false;
+      }
+    })
   }
-
   private user$: Observable<User | null>;
 
   public loginTry(email: string, password: string): Promise<UserCredential> {
