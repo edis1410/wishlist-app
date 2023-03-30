@@ -1,0 +1,18 @@
+<div class="flex w-full h-full flex-wrap">
+  <p class="flex mt-20 text-xl justify-center w-full font-bold">Welcome to the wishlist app!</p>
+  <p class="flex mt-2 justify-center w-full">Log in to your account or register a new one.</p>
+  <div class="flex w-full justify-center mt-10">
+    <button
+      [routerLink]="['/login']"
+      class="relative w-32 place-items-center bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
+    >
+      Log in
+    </button>
+    <button
+      [routerLink]="['/register']"
+      class="relative w-32 ml-7 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
+    >
+      Register
+    </button>
+  </div>
+</div>
