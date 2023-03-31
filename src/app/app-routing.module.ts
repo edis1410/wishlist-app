@@ -8,6 +8,7 @@ const routes: Routes = [
   { path: 'login', loadChildren: () => import('./login/login.module').then((m) => m.LoginModule),},
   { path: 'register', loadChildren: () => import('./register/register.module').then((m) => m.RegisterModule),},
   { path: 'dashboard', canActivate: [() => inject(AuthGuardService).canActivate()], loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule) },
+  { path: 'events', canActivate: [() => inject(AuthGuardService).canActivate()], loadChildren: () => import('./events/events.module').then(m => m.EventsModule) },
 ];
 
 @NgModule({
