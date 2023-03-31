@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginService } from '../login.service';
+import { updateProfile } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-register',
@@ -21,6 +22,10 @@ export class RegisterComponent implements OnInit{
   public regErr: boolean = false;
 
   public loginForm = this.fb.group({
+    username: this.fb.control<string | null>(null, [
+      Validators.required,
+      Validators.min(4),
+    ]),
     email: this.fb.control<string | null>(null, [
       Validators.required,
       Validators.email,
@@ -35,6 +40,9 @@ export class RegisterComponent implements OnInit{
     ]),
   });
 
+  get username() {
+    return this.loginForm.get('username');
+  }
   get email() {
     return this.loginForm.get('email');
   }
@@ -47,10 +55,16 @@ export class RegisterComponent implements OnInit{
 
   public attemptRegister(): void {
     if (this.loginForm.valid && this.password?.value === this.passwordCheck?.value) {
-      this.login.register(this.email?.value!, this.password?.value!).then(
-        () => this.onSuccess(),
-        () => this.onFail()
-      );
+      this.login.register(this.email?.value!, this.password?.value!)
+      .then((userCredential) => { 
+        const user = userCredential.user;
+        updateProfile(user, {displayName: this.username?.value})
+        this.router.navigate(['dashboard']);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+      });
     } else {
       console.log('Passwords do not match');
     }

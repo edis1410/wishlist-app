@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
 import { LoginService } from './login.service';
 
 @Component({
@@ -11,8 +10,6 @@ import { LoginService } from './login.service';
 export class AppComponent{
   title = 'wishlist-app';
   public showDropdown = false;
-  public email: string = ""
-
 
   constructor(public login: LoginService, private router: Router) {}
   public logOutTry(): void {
@@ -21,7 +18,6 @@ export class AppComponent{
       () => console.log('failed logout')
     );
   }
-  
 
   public dropdownToggle(): void {
     this.showDropdown = !this.showDropdown;

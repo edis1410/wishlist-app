@@ -18,6 +18,7 @@ import { Router } from '@angular/router';
 })
 export class LoginService {
   public email: string = "";
+  public username: string = "";
   public loggedIn: boolean = false;
 
   constructor(private auth: Auth, public router: Router, public jwtHelper: JwtHelperService,) {
@@ -26,6 +27,7 @@ export class LoginService {
       if(user){
         this.loggedIn = true;
         this.email = user.email!
+        this.username = user.displayName!
       }
       else{
         this.loggedIn = false;
