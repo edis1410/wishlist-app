@@ -9,6 +9,8 @@ const routes: Routes = [
   { path: 'register', loadChildren: () => import('./register/register.module').then((m) => m.RegisterModule),},
   { path: 'dashboard', canActivate: [() => inject(AuthGuardService).canActivate()], loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule) },
   { path: 'events', canActivate: [() => inject(AuthGuardService).canActivate()], loadChildren: () => import('./events/events.module').then(m => m.EventsModule) },
+  { path: 'create-event', canActivate: [() => inject(AuthGuardService).canActivate()], loadChildren: () => import('./create-event/create-event.module').then(m => m.CreateEventModule) },
+  { path: 'event/:id', canActivate: [() => inject(AuthGuardService).canActivate()], loadChildren: () => import('./event-details/event-details.module').then(m => m.EventDetailsModule)  },
 ];
 
 @NgModule({
