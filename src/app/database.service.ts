@@ -28,6 +28,12 @@ export class DatabaseService {
       date: date,
     });
   }
+  public async addItem(name: string, price: number, link: string): Promise<void> {
+    await setDoc(doc(this.db, 'items', name), {
+      price: price,
+      link: link
+    });
+  }
   public async getData(): Promise<any[]> {
     const eventsList: any[] = [];
     const querySnapshot = await getDocs(collection(this.db, 'events'));

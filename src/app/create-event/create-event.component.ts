@@ -14,7 +14,6 @@ export class CreateEventComponent {
   public createEventForm = this.fb.group({
     name: this.fb.control<string | null>(null, [
       Validators.required,
-      Validators.email,
     ]),
     date: this.fb.control<string>('', [Validators.required]),
   });
@@ -28,7 +27,6 @@ export class CreateEventComponent {
 
   public createEvent(): void {
     // if (this.createEventForm.valid) {
-      const createFormData = this.createEventForm.getRawValue();
       this.db.createEvent(this.name?.value!, this.date?.value!);
     // } else {
     //   console.log('Handle errors');
