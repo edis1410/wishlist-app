@@ -1,18 +1,8 @@
-<div class="flex w-full h-full flex-wrap">
-  <p class="flex mt-20 text-xl justify-center w-full font-bold">Welcome to the wishlist app!</p>
-  <p class="flex mt-2 justify-center w-full">Log in to your account or register a new one.</p>
-  <div class="flex w-full justify-center mt-10">
-    <button
-      [routerLink]="['/login']"
-      class="relative w-32 place-items-center bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
-    >
-      Log in
-    </button>
-    <button
-      [routerLink]="['/register']"
-      class="relative w-32 ml-7 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
-    >
-      Register
-    </button>
+<div class="bg-gradient-to-br from-purple-500 to-blue-500 min-h-screen flex flex-col justify-center items-center">
+  <h1 class="text-4xl md:text-6xl text-white font-bold mb-8">My Wishlist App</h1>
+  <p class="text-xl md:text-xl text-white font-bold mb-8">Log in to your account or register a new one</p>
+  <div class="flex flex-col md:flex-row gap-4">
+    <button [routerLink]="['/login']" class="bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-4 rounded-md mb-4 md:mb-0 md:mr-4">Login</button>
+    <button  [routerLink]="['/register']" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-md">Register</button>
   </div>
 </div>
