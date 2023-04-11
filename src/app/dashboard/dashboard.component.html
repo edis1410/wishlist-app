@@ -1,1 +1,15 @@
-<p class="mt-20">dashboard works!</p>
+<p class="mt-20 ml-4">Hello {{ login.username }}!</p>
+<div class="flex w-full justify-center mt-10">
+  <button
+    [routerLink]="['/create-event']"
+    class="relative w-32 place-items-center bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
+  >
+    Join/create an event
+  </button>
+  <button
+    [routerLink]="['/events']"
+    class="relative w-32 ml-7 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
+  >
+    Your events
+  </button>
+</div>

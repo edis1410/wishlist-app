@@ -1,0 +1,4 @@
+<p class="mt-20 ml-4">My events</p>
+<ul class="mt-4 ml-4"> Events list
+    <li class="mt-2 ml-2 cursor-pointer" *ngFor="let event of events" [routerLink]="['/add-item']">{{event}}</li>
+</ul>
