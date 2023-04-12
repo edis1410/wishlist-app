@@ -21,7 +21,7 @@ export class RegisterComponent implements OnInit{
 
   public regErr: boolean = false;
 
-  public loginForm = this.fb.group({
+  public registerForm = this.fb.group({
     username: this.fb.control<string | null>(null, [
       Validators.required,
       Validators.min(4),
@@ -41,20 +41,20 @@ export class RegisterComponent implements OnInit{
   });
 
   get username() {
-    return this.loginForm.get('username');
+    return this.registerForm.get('username');
   }
   get email() {
-    return this.loginForm.get('email');
+    return this.registerForm.get('email');
   }
   get password() {
-    return this.loginForm.get('password');
+    return this.registerForm.get('password');
   }
   get passwordCheck() {
-    return this.loginForm.get('passwordCheck');
+    return this.registerForm.get('passwordCheck');
   }
 
   public attemptRegister(): void {
-    if (this.loginForm.valid && this.password?.value === this.passwordCheck?.value) {
+    if (this.registerForm.valid && this.password?.value === this.passwordCheck?.value) {
       this.login.register(this.email?.value!, this.password?.value!)
       .then((userCredential) => { 
         const user = userCredential.user;
