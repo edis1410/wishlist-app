@@ -1,36 +1,90 @@
-<p class="mt-20 ml-4">Create a new event!</p>
-<div
-  class="flex w-full h-full border shadow-md border-neutral-500 justify-center"
->
+<div class="flex flex-col items-center space-y-8 mt-32">
+  <h2 class="text-2xl font-bold">Create a new event</h2>
   <form
-    class="mt-8 mb-8 space-y-6"
+    class="w-full max-w-lg bg-white rounded-lg shadow-md"
     [formGroup]="createEventForm"
     (ngSubmit)="createEvent()"
   >
-    <div class="-space-y-px rounded-md shadow-sm">
-      <input
-        id="name"
-        type="text"
-        formControlName="name"
-        required
-        class="relative block w-full rounded-t-md border-0 py-1.5 pl-2 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-        placeholder="Event name"
-      />
-      <input
-        id="date"
-        type="date"
-        formControlName="date"
-        required
-        class="relative block w-full rounded-b-md border-0 py-1.5 px-2 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-        placeholder="Date"
-      />
+    <div class="px-6 py-8 space-y-6">
+      <div>
+        <label for="name" class="block text-gray-700 font-medium mb-2">
+          Event name
+        </label>
+        <input
+          id="name"
+          type="text"
+          formControlName="name"
+          required
+          class="w-full border-gray-300 px-4 py-2 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+          placeholder="Enter the event name"
+        />
+      </div>
+      <div>
+        <label for="date" class="block text-gray-700 font-medium mb-2">
+          Date
+        </label>
+        <input
+          id="date"
+          type="date"
+          formControlName="date"
+          required
+          class="w-full border-gray-300 px-4 py-2 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+          placeholder="Enter the event date"
+        />
+        <div>
+          <label
+            for="password"
+            class="block text-gray-700 font-medium mb-2 mt-4"
+          >
+            Event password
+          </label>
+          <input
+            id="password"
+            type="text"
+            formControlName="password"
+            required
+            class="w-full border-gray-300 px-4 py-2 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+            placeholder="Enter a password for other users"
+          />
+        </div>
+      </div>
+      <div class="flex items-center justify-end">
+        <button
+          [routerLink]="['/events']"
+          type="submit"
+          class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+        >
+          Create event
+        </button>
+      </div>
     </div>
-    <button
-      [routerLink]="['/events']"
-      type="submit"
-      class="group relative flex w-full cursor-pointer justify-center rounded-md bg-indigo-600 py-2 px-3 text-sm font-semibold text-white hover:bg-indigo-500"
-    >
-      Create event
-    </button>
   </form>
+
+  <h2 class="text-2xl font-bold">Join an event</h2>
+  <div class="w-full max-w-lg bg-white rounded-lg shadow-md">
+    <div class="px-6 py-8 space-y-6">
+      <div>
+        <label for="name" class="block text-gray-700 font-medium mb-2">
+          Event password
+        </label>
+        <input
+          id="name"
+          type="text"
+          formControlName="name"
+          required
+          class="w-full border-gray-300 px-4 py-2 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+          placeholder="Enter the event password"
+        />
+      </div>
+      <div class="flex items-center justify-end">
+        <button
+          [routerLink]="['/events']"
+          type="submit"
+          class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+        >
+          Join event
+        </button>
+      </div>
+    </div>
+  </div>
 </div>

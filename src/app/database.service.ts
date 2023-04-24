@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { doc, collection, addDoc, getDocs, setDoc } from 'firebase/firestore';
+import { doc, collection, addDoc, getDocs, setDoc, updateDoc } from 'firebase/firestore';
 import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
 
@@ -28,12 +28,21 @@ export class DatabaseService {
       date: date,
     });
   }
+
   public async addItem(name: string, price: number, link: string): Promise<void> {
     await setDoc(doc(this.db, 'items', name), {
       price: price,
       link: link
     });
   }
+
+  public async updateEvent(): Promise<void>{
+    const event = doc(this.db, "events", "testEvent");
+    await updateDoc(event, {
+      name: 'janezRD'
+    });
+  }
+
   public async getData(): Promise<any[]> {
     const eventsList: any[] = [];
     const querySnapshot = await getDocs(collection(this.db, 'events'));

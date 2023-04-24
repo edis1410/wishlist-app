@@ -1,52 +1,80 @@
 <div
-  class="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8"
+  class="flex flex-col items-center justify-center h-screen bg-gradient-to-b from-purple-500 to-pink-500"
 >
-  <div class="w-full max-w-md space-y-8">
-    <h2
-      class="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900"
-    >
-      Register a new account
+  <div class="sm:mx-auto sm:w-full sm:max-w-md">
+    <h2 class="mt-6 text-center text-3xl font-extrabold text-white">
+      Create a new account
     </h2>
-    <form
-      class="mt-8 space-y-6"
-      [formGroup]="loginForm"
-      (ngSubmit)="attemptRegister()"
-    >
-      <div class="-space-y-px rounded-md shadow-sm">
-        <input
-          id="username"
-          type="text"
-          formControlName="username"
-          required
-          class="relative block w-full rounded-t-md border-0 py-1.5 pl-2 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-          placeholder="Username"
-        />
-        <input
-          id="email-address"
-          type="email"
-          formControlName="email"
-          required
-          class="relative block w-full border-0 py-1.5 pl-2 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-          placeholder="Email address"
-        />
-        <input
-          id="password"
-          type="password"
-          formControlName="password"
-          required
-          class="relative block w-full border-0 py-1.5 pl-2 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-          placeholder="Password"
-        />
-        <input
-          id="passwordCheck"
-          type="password"
-          formControlName="passwordCheck"
-          required
-          class="relative block w-full rounded-b-md border-0 py-1.5 pl-2 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-          placeholder="Re-type password"
-        />
-      </div>
-      <div
+  </div>
+
+  <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+    <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+      <form
+        (ngSubmit)="attemptRegister()"
+        [formGroup]="registerForm"
+        class="space-y-6"
+      >
+        <div>
+          <label for="username" class="block font-bold text-gray-700">
+            Username
+          </label>
+          <div class="mt-1">
+            <input
+              type="text"
+              id="username"
+              formControlName="username"
+              required
+              class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            />
+          </div>
+        </div>
+
+        <div>
+          <label for="email" class="block font-bold text-gray-700">
+            Email address
+          </label>
+          <div class="mt-1">
+            <input
+              id="email"
+              type="email"
+              formControlName="email"
+              required
+              class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            />
+          </div>
+        </div>
+
+        <div>
+          <label for="password" class="block font-bold text-gray-700">
+            Password
+          </label>
+          <div class="mt-1">
+            <input
+              id="password"
+              type="password"
+              formControlName="password"
+              required
+              class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            />
+          </div>
+        </div>
+
+        <div>
+          <label for="passwordCheck" class="block font-bold text-gray-700">
+            Confirm Password
+          </label>
+          <div class="mt-1">
+            <input
+              id="password-confirm"
+              type="password"
+              formControlName="passwordCheck"
+              required
+              class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            />
+          </div>
+        </div>
+
+        <div
         class="relative block w-full rounded border border-red-400 bg-red-100 px-4 py-3 text-red-700"
         *ngIf="email?.invalid && (email?.dirty || email?.touched)"
       >
@@ -59,20 +87,34 @@
       >
         <div *ngIf="password?.errors?.['required']">The password is required</div>
       </div>
-      <div
-        class="relative block w-full rounded border border-red-400 bg-red-100 px-4 py-3 text-red-700"
-        *ngIf="regErr === true"
-      >
-        Something went wrong. Please try again.
-      </div>
-      <button
-        type="submit"
-        class="group relative flex w-full cursor-pointer justify-center rounded-md bg-indigo-600 py-2 px-3 text-sm font-semibold text-white hover:bg-indigo-500"
-      >
-        Register
-      </button>
-    </form>
-    <div class="relative block text-center"> Already have an account?</div>
-    <div class="relative block text-center text-blue-600 dark:text-blue-500 hover:underline cursor-pointer" [routerLink]="['/login']"> Log in here!</div>
+
+        <div
+          *ngIf="regErr"
+          class="mt-3 rounded-md shadow-sm -space-y-px p-2 bg-red-50 border border-red-400"
+        >
+          <p class="text-sm text-red-700">
+            Something went wrong. Please try again.
+          </p>
+        </div>
+
+        <div class="flex items-center justify-between">
+          <button
+            type="submit"
+            class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          >
+            Register
+          </button>
+          <div class="text-sm">
+            Already have an account?
+            <a
+              class="ml-1 font-semibold text-purple-500 hover:text-purple-700"
+              [routerLink]="['/login']"
+            >
+              Log in here!
+            </a>
+          </div>
+        </div>
+      </form>
+    </div>
   </div>
 </div>

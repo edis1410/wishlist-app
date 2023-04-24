@@ -37,7 +37,7 @@ export class AddItemComponent {
         this.name?.value!,
         parseFloat(this.price?.value!),
         this.link?.value!
-      );
+      ).then(response => this.db.updateEvent());
     } else {
       console.log('Handle errors');
     }

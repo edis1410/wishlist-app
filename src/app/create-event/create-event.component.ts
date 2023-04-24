@@ -16,6 +16,9 @@ export class CreateEventComponent {
       Validators.required,
     ]),
     date: this.fb.control<string>('', [Validators.required]),
+    password: this.fb.control<string | null>(null, [
+      Validators.required,
+    ]),
   });
 
   get name() {
@@ -24,6 +27,9 @@ export class CreateEventComponent {
   get date() {
     return this.createEventForm.get('date');
   }
+  get password() {
+    return this.createEventForm.get('password');
+  }
 
   public createEvent(): void {
     // if (this.createEventForm.valid) {
@@ -31,5 +37,9 @@ export class CreateEventComponent {
     // } else {
     //   console.log('Handle errors');
     // }
+  }
+
+  public joinEvent(): void {
+    
   }
 }
