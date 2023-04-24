@@ -1,4 +1,4 @@
-<div class="py-8">
+<div class="py-8 mt-20">
   <form
     [formGroup]="addItemForm"
     (ngSubmit)="addItem()"
@@ -45,6 +45,7 @@
     </div>
     <div class="flex items-center justify-between">
       <button
+      [routerLink]="['/events']"
         type="submit"
         class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
       >

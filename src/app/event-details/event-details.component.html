@@ -1,21 +1,19 @@
 <div class="flex flex-col justify-center items-center h-screen">
   <p class="mt-20 ml-4 font-bold text-xl">{{ id }}</p>
   <ul class="ml-4">
-    <li>FakeItem</li>
-    <li>FakeItem</li>
-    <li>FakeItem</li>
-    <li>FakeItem</li>
+    <li *ngFor="let item of items">{{item}}</li>
+
   </ul>
-  <!-- [routerLink]="['/',id,'add-item']" -->
+
   <button
-  [routerLink]="['/add-item']"
+    [routerLink]="['/', id, 'add-item']"
     class="bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 text-white font-bold py-2 px-4 rounded mt-4"
   >
     Add item
   </button>
   <button
-  (click)="leaveEvent()"
-  [routerLink]="['/events']"
+    (click)="leaveEvent()"
+    [routerLink]="['/events']"
     class="bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 text-white font-bold py-2 px-4 rounded mt-4"
   >
     Leave event

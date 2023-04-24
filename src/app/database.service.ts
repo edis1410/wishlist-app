@@ -38,24 +38,25 @@ export class DatabaseService {
     name: string,
     date: string,
     password: string,
-    user: string
   ): Promise<void> {
     await setDoc(doc(this.db, 'events', name), {
       name: name,
       date: date,
       password: password,
-      users: [user],
+      users: [this.login.username],
     });
   }
 
   public async addItem(
     name: string,
     price: number,
-    link: string
+    link: string,
+    event: string,
   ): Promise<void> {
     await setDoc(doc(this.db, 'items', name), {
       price: price,
       link: link,
+      event: event
     });
   }
 
@@ -97,6 +98,21 @@ export class DatabaseService {
     querySnapshot.forEach((doc) => {
       eventsList.push(doc.id);
     });
+    return eventsList;
+  }
+
+  public async getItems(id: string): Promise<any[]> {
+    const eventsList: any[] = [];
+    const q = query(
+      collection(this.db, 'items'),
+      where('event', '==', id)
+    );
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+      eventsList.push(doc.id, doc.data()['price'], doc.data()['link']);
+    });
+    console.log(eventsList);
+    
     return eventsList;
   }
 }

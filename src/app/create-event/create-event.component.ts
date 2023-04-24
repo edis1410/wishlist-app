@@ -38,11 +38,7 @@ export class CreateEventComponent {
 }
 
   public createEvent(): void {
-    // if (this.createEventForm.valid) {
-      this.db.createEvent(this.name?.value!, this.date?.value!, this.password?.value!, this.login.username);
-    // } else {
-    //   console.log('Handle errors');
-    // }
+      this.db.createEvent(this.name?.value!, this.date?.value!, this.password?.value!);
   }
 
   public joinEventForm = this.fb.group({
