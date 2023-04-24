@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DatabaseService } from '../database.service';
+import { LoginService } from '../login.service';
 
 @Component({
   selector: 'app-create-event',
@@ -9,7 +10,9 @@ import { DatabaseService } from '../database.service';
   styleUrls: ['./create-event.component.css'],
 })
 export class CreateEventComponent {
-  constructor(private fb: FormBuilder, private router: Router, private db: DatabaseService) {}
+  show: boolean = false;
+
+  constructor(private fb: FormBuilder, private router: Router, private db: DatabaseService, private login: LoginService) {}
 
   public createEventForm = this.fb.group({
     name: this.fb.control<string | null>(null, [
@@ -30,16 +33,29 @@ export class CreateEventComponent {
   get password() {
     return this.createEventForm.get('password');
   }
+  passwordShow() {
+    this.show = !this.show;
+}
 
   public createEvent(): void {
     // if (this.createEventForm.valid) {
-      this.db.createEvent(this.name?.value!, this.date?.value!);
+      this.db.createEvent(this.name?.value!, this.date?.value!, this.password?.value!, this.login.username);
     // } else {
     //   console.log('Handle errors');
     // }
   }
 
+  public joinEventForm = this.fb.group({
+    join: this.fb.control<string | null>(null, [
+      Validators.required,
+    ])
+  });
+
+  get join() {
+    return this.joinEventForm.get('join');
+  }
+
   public joinEvent(): void {
-    
+    this.db.joinEvent(this.join?.value!);
   }
 }

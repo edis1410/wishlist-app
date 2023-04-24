@@ -1,7 +1,19 @@
 import { Injectable } from '@angular/core';
-import { doc, collection, addDoc, getDocs, setDoc, updateDoc } from 'firebase/firestore';
+import {
+  getFirestore,
+  doc,
+  collection,
+  addDoc,
+  getDocs,
+  setDoc,
+  updateDoc,
+  arrayUnion,
+  arrayRemove,
+  query,
+  where,
+} from 'firebase/firestore';
 import { initializeApp } from 'firebase/app';
-import { getFirestore } from 'firebase/firestore';
+import { LoginService } from './login.service';
 
 @Injectable({
   providedIn: 'root',
@@ -20,35 +32,56 @@ export class DatabaseService {
   public app = initializeApp(this.firebaseConfig);
   public db = getFirestore(this.app);
 
-  constructor() {}
+  constructor(private login: LoginService) {}
 
-  public async createEvent(name: string, date: string): Promise<void> {
+  public async createEvent(
+    name: string,
+    date: string,
+    password: string,
+    user: string
+  ): Promise<void> {
     await setDoc(doc(this.db, 'events', name), {
       name: name,
       date: date,
+      password: password,
+      users: [user],
     });
   }
 
-  public async addItem(name: string, price: number, link: string): Promise<void> {
+  public async addItem(
+    name: string,
+    price: number,
+    link: string
+  ): Promise<void> {
     await setDoc(doc(this.db, 'items', name), {
       price: price,
-      link: link
+      link: link,
     });
   }
 
-  public async updateEvent(): Promise<void>{
-    const event = doc(this.db, "events", "testEvent");
-    await updateDoc(event, {
-      name: 'janezRD'
+  public async joinEvent(password: string): Promise<void> {
+    const q = query(
+      collection(this.db, 'events'),
+      where('password', '==', password)
+    );
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach(async (document) => {
+      const event = doc(this.db, 'events', document.id);
+      await updateDoc(event, {
+        users: arrayUnion(this.login.username),
+      });
     });
   }
 
   public async getData(): Promise<any[]> {
     const eventsList: any[] = [];
-    const querySnapshot = await getDocs(collection(this.db, 'events'));
+    const q = query(
+      collection(this.db, 'events'),
+      where('users', 'array-contains', this.login.username)
+    );
+    const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
       eventsList.push(doc.id);
-      // console.log(`${doc.id} => ${doc.data()}`);
     });
     return eventsList;
   }
