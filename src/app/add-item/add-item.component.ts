@@ -37,7 +37,7 @@ export class AddItemComponent {
         this.name?.value!,
         parseFloat(this.price?.value!),
         this.link?.value!
-      ).then(response => this.db.updateEvent());
+       )//.then(response => this.db.updateEvent("Dodan"));
     } else {
       console.log('Handle errors');
     }

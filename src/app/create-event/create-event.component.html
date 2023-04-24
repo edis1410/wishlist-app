@@ -40,12 +40,15 @@
           </label>
           <input
             id="password"
-            type="text"
+            [type]="show ? 'text' : 'password'"
             formControlName="password"
             required
             class="w-full border-gray-300 px-4 py-2 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
             placeholder="Enter a password for other users"
           />
+          <button class="border mt-2" (click)="passwordShow()">
+            {{ show ? "Hide password" : "Show password" }}
+          </button>
         </div>
       </div>
       <div class="flex items-center justify-end">
@@ -61,16 +64,20 @@
   </form>
 
   <h2 class="text-2xl font-bold">Join an event</h2>
-  <div class="w-full max-w-lg bg-white rounded-lg shadow-md">
+  <form
+    class="w-full max-w-lg bg-white rounded-lg shadow-md"
+    [formGroup]="joinEventForm"
+    (ngSubmit)="joinEvent()"
+  >
     <div class="px-6 py-8 space-y-6">
       <div>
-        <label for="name" class="block text-gray-700 font-medium mb-2">
+        <label for="join" class="block text-gray-700 font-medium mb-2">
           Event password
         </label>
         <input
-          id="name"
+          id="join"
+          formControlName="join"
           type="text"
-          formControlName="name"
           required
           class="w-full border-gray-300 px-4 py-2 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
           placeholder="Enter the event password"
@@ -78,7 +85,6 @@
       </div>
       <div class="flex items-center justify-end">
         <button
-          [routerLink]="['/events']"
           type="submit"
           class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
         >
@@ -86,5 +92,5 @@
         </button>
       </div>
     </div>
-  </div>
+  </form>
 </div>
