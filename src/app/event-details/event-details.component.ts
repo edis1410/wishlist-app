@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { DatabaseService } from '../database.service';
 
 @Component({
   selector: 'app-event-details',
@@ -10,11 +11,11 @@ import { Subscription } from 'rxjs';
 export class EventDetailsComponent {
   public id: string | undefined;
   private routeSub: Subscription | undefined;
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private db: DatabaseService) { }
 
   ngOnInit() {
     this.routeSub = this.route.params.subscribe(params => {
-      this.id = params['id'] //log the value of id
+      this.id = params['id']
     });
   }
 
@@ -22,4 +23,7 @@ export class EventDetailsComponent {
     this.routeSub!.unsubscribe();
   }
 
+  public leaveEvent(): void{
+    this.db.leaveEvent(this.id!);
+  }
 }

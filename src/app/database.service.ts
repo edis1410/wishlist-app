@@ -73,6 +73,20 @@ export class DatabaseService {
     });
   }
 
+  public async leaveEvent(id:string): Promise<void> {
+    const q = query(
+      collection(this.db, 'events'),
+      where('name', '==', id)
+    );
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach(async (document) => {
+      const event = doc(this.db, 'events', document.id);
+      await updateDoc(event, {
+        users: arrayRemove(this.login.username),
+      });
+    });
+  }
+
   public async getData(): Promise<any[]> {
     const eventsList: any[] = [];
     const q = query(
