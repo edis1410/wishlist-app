@@ -129,4 +129,12 @@ export class DatabaseService {
     
     return eventsList;
   }
+
+  public async updateBought(id: string, b: boolean) {
+    await updateDoc(doc(this.db, 'items', id), {
+      bought: !b
+    }).then(() => location.reload());
+    console.log(b);
+    
+  }
 }

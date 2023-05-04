@@ -1,22 +1,33 @@
 <div class="flex flex-col justify-center items-center min-h-screen bg-gray-100">
-  <p class="mt-8 font-bold text-xl">{{ id }}</p>
+  <p class="font-bold text-xl">{{ id }}</p>
 
   <table class="table-auto w-full mt-8">
     <thead>
       <tr>
         <th class="px-4 py-2 text-left">Name</th>
-        <th class="px-4 py-2 text-left">Price</th>
+        <th class="px-4 py-2 text-left">Price(€)</th>
         <th class="px-4 py-2 text-left">Link</th>
         <th class="px-4 py-2 text-left">Person</th>
-        <th class="px-4 py-2 text-left">Action</th>
+        <th class="px-4 py-2 text-left">Bought</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let item of items | keyvalue">
         <td class="border px-4 py-2">{{ item.value.name }}</td>
         <td class="border px-4 py-2">{{ item.value.price }}</td>
-        <td class="border px-4 py-2">{{ item.value.link }}</td>
+        <td class="border px-4 py-2">
+          <a
+            [href]="item.value.link"
+            target="_blank"
+            class="inline-block font-medium text-blue-600 hover:text-blue-800 transition duration-300 ease-in-out transform hover:-translate-y-1"
+          >
+            {{ item.value.link }}
+          </a>
+        </td>
         <td class="border px-4 py-2">{{ item.value.user }}</td>
+        <td class="border px-4 py-2">
+          <input class="ml-10" [checked]="item.value.bought" type="checkbox" (change)="updateBought(item.value.name, item.value.bought)"/>
+        </td>
         <td class="border px-4 py-2">
           <button
             (click)="deleteItem(item.value.name)"

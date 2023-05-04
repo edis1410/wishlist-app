@@ -9,6 +9,7 @@ import { DatabaseService } from '../database.service';
   styleUrls: ['./event-details.component.css']
 })
 export class EventDetailsComponent {
+  bought = false;
   public id: string | undefined;
   private routeSub: Subscription | undefined;
   public items: any[] = [];
@@ -29,7 +30,11 @@ export class EventDetailsComponent {
     this.db.leaveEvent(this.id!);
   }
 
-  public deleteItem(v:string): void{
-    this.db.deleteItem(v);
+  public deleteItem(idItem:string): void{
+    this.db.deleteItem(idItem);
+  }
+
+  public updateBought(idItem: string, bought: boolean){
+    this.db.updateBought(idItem, bought);
   }
 }
