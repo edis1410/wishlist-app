@@ -3,7 +3,6 @@ import {
   getFirestore,
   doc,
   collection,
-  addDoc,
   getDocs,
   setDoc,
   updateDoc,
@@ -127,7 +126,6 @@ export class DatabaseService {
     querySnapshot.forEach((doc) => {
       eventsList.push(doc.data());
     });
-    console.log(eventsList);
     
     return eventsList;
   }

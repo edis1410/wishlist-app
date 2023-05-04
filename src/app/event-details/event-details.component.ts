@@ -30,6 +30,6 @@ export class EventDetailsComponent {
   }
 
   public deleteItem(v:string): void{
-    this.db.deleteItem(v).then(() => location.reload());
+    this.db.deleteItem(v);
   }
 }
