@@ -7,6 +7,7 @@ import {
   getDocs,
   setDoc,
   updateDoc,
+  deleteDoc,
   arrayUnion,
   arrayRemove,
   query,
@@ -56,9 +57,22 @@ export class DatabaseService {
     await setDoc(doc(this.db, 'items', name), {
       price: price,
       link: link,
-      event: event
+      event: event,
+      user: this.login.username,
     });
   }
+  public async deleteItem(id:string): Promise<void> {
+    const q = query(
+      collection(this.db, 'items'),
+      where('name', '==', id)
+    );
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach(async (document) => {
+      const event = doc(this.db, 'events', document.id);
+      await deleteDoc(event)
+    });
+  }
+
 
   public async joinEvent(password: string): Promise<void> {
     const q = query(

@@ -28,4 +28,8 @@ export class EventDetailsComponent {
   public leaveEvent(): void{
     this.db.leaveEvent(this.id!);
   }
+
+  public deleteItem(): void{
+    this.db.deleteItem(this.id!);
+  }
 }
