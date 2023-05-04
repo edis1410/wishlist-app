@@ -3,6 +3,7 @@ import { DatabaseService } from '../database.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-add-item',
@@ -17,7 +18,8 @@ export class AddItemComponent {
     private fb: FormBuilder,
     private router: Router,
     private db: DatabaseService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private _location: Location
   ) {}
 
   ngOnInit() {
@@ -53,7 +55,7 @@ export class AddItemComponent {
         parseFloat(this.price?.value!),
         this.link?.value!,
         this.id!
-       )//.then(response => this.db.updateEvent("Dodan"));
+       ).then(() => this._location.back());
     } else {
       console.log('Handle errors');
     }

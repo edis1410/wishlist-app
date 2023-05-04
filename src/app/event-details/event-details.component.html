@@ -1,8 +1,9 @@
 <div class="flex flex-col justify-center items-center h-screen">
   <p class="mt-20 ml-4 font-bold text-xl">{{ id }}</p>
   <ul class="ml-4">
-    <li *ngFor="let item of items">{{item}}
-      <button (click)="deleteItem()" class="ml-4"> Delete item</button>
+    Name: Price: Link:
+    <li *ngFor="let item of items | keyvalue">{{item.value.name}} {{item.value.price}} {{item.value.link}}
+      <button (click)="deleteItem(item.value.name)" class="ml-4"> Delete item</button>
     </li>
 
   </ul>

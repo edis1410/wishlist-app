@@ -55,6 +55,7 @@ export class DatabaseService {
     event: string,
   ): Promise<void> {
     await setDoc(doc(this.db, 'items', name), {
+      name: name,
       price: price,
       link: link,
       event: event,
@@ -62,14 +63,15 @@ export class DatabaseService {
     });
   }
   public async deleteItem(id:string): Promise<void> {
+    console.log(id)
     const q = query(
       collection(this.db, 'items'),
       where('name', '==', id)
     );
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach(async (document) => {
-      const event = doc(this.db, 'events', document.id);
-      await deleteDoc(event)
+      const item = doc(this.db, 'items', document.id);
+      await deleteDoc(item)
     });
   }
 
@@ -123,7 +125,7 @@ export class DatabaseService {
     );
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
-      eventsList.push(doc.id, doc.data()['price'], doc.data()['link']);
+      eventsList.push(doc.data());
     });
     console.log(eventsList);
     

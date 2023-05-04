@@ -29,7 +29,7 @@ export class EventDetailsComponent {
     this.db.leaveEvent(this.id!);
   }
 
-  public deleteItem(): void{
-    this.db.deleteItem(this.id!);
+  public deleteItem(v:string): void{
+    this.db.deleteItem(v).then(() => location.reload());
   }
 }
