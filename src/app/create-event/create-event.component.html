@@ -1,11 +1,13 @@
-<div class="flex flex-col items-center space-y-8 mt-32">
-  <h2 class="text-2xl font-bold">Create a new event</h2>
-  <form
-    class="w-full max-w-lg bg-white rounded-lg shadow-md"
-    [formGroup]="createEventForm"
-    (ngSubmit)="createEvent()"
-  >
-    <div class="px-6 py-8 space-y-6">
+<div class="flex justify-center space-x-16 mt-28">
+  <!-- Create a new event -->
+  <div class="w-full max-w-lg bg-white rounded-lg shadow-md">
+    <h2 class="px-6 py-4 text-2xl font-bold">Create a new event</h2>
+    <form
+      class="px-6 py-4 space-y-4"
+      [formGroup]="createEventForm"
+      (ngSubmit)="createEvent()"
+    >
+      <!-- Event name -->
       <div>
         <label for="name" class="block text-gray-700 font-medium mb-2">
           Event name
@@ -19,6 +21,7 @@
           placeholder="Enter the event name"
         />
       </div>
+      <!-- Date -->
       <div>
         <label for="date" class="block text-gray-700 font-medium mb-2">
           Date
@@ -31,13 +34,13 @@
           class="w-full border-gray-300 px-4 py-2 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
           placeholder="Enter the event date"
         />
-        <div>
-          <label
-            for="password"
-            class="block text-gray-700 font-medium mb-2 mt-4"
-          >
-            Event password
-          </label>
+      </div>
+      <!-- Event password -->
+      <div>
+        <label for="password" class="block text-gray-700 font-medium mb-2">
+          Event password
+        </label>
+        <div class="flex items-center space-x-2">
           <input
             id="password"
             [type]="show ? 'text' : 'password'"
@@ -46,15 +49,14 @@
             class="w-full border-gray-300 px-4 py-2 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
             placeholder="Enter a password for other users"
           />
-          <button class="border mt-2" (click)="passwordShow()">
+          <button class="border px-3 py-1" (click)="passwordShow()">
             {{ show ? "Hide password" : "Show password" }}
           </button>
         </div>
       </div>
-      <div>
-        <label for="solo" class="block text-gray-700 font-medium mb-2">
-          Multiple people getting gifts?
-        </label>
+      <!-- Multiple people getting gifts? -->
+      <div class="flex items-center space-x-4">
+        <label for="true" class="text-gray-700 font-medium">Multiple people getting gifts?</label>
         <input
           id="true"
           type="radio"
@@ -72,25 +74,28 @@
         />
         <label for="false">No</label>
       </div>
-      <div class="flex items-center justify-end">
+      <!-- Create event button -->
+      <div class="flex justify-end">
         <button
           [routerLink]="['/events']"
           type="submit"
-          class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+          class="inline-flex items-center justify-center px-6 py-3 mt-4 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
         >
           Create event
         </button>
       </div>
-    </div>
-  </form>
+    </form>
+  </div>
 
-  <h2 class="text-2xl font-bold">Join an event</h2>
-  <form
-    class="w-full max-w-lg bg-white rounded-lg shadow-md"
-    [formGroup]="joinEventForm"
-    (ngSubmit)="joinEvent()"
-  >
-    <div class="px-6 py-8 space-y-6">
+  <!-- Join an event -->
+  <div class="w-full max-w-lg bg-white rounded-lg shadow-md">
+    <h2 class="px-6 py-4 text-2xl font-bold">Join an event</h2>
+    <form
+      class="px-6 py-4 space-y-4"
+      [formGroup]="joinEventForm"
+      (ngSubmit)="joinEvent()"
+    >
+      <!-- Event password -->
       <div>
         <label for="join" class="block text-gray-700 font-medium mb-2">
           Event password
@@ -98,13 +103,14 @@
         <input
           id="join"
           formControlName="join"
-          type="text"
+          type="password"
           required
           class="w-full border-gray-300 px-4 py-2 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
           placeholder="Enter the event password"
         />
       </div>
-      <div class="flex items-center justify-end">
+      <!-- Join event button -->
+      <div class="flex justify-end">
         <button
           [routerLink]="['/dashboard']"
           type="submit"
@@ -113,6 +119,6 @@
           Join event
         </button>
       </div>
-    </div>
-  </form>
+    </form>
+  </div>
 </div>
