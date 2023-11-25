@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { DatabaseService } from '../database.service';
+import { LoginService } from '../login.service';
 
 @Component({
   selector: 'app-event-details',
@@ -8,18 +10,32 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./event-details.component.css']
 })
 export class EventDetailsComponent {
+  bought = false;
   public id: string | undefined;
   private routeSub: Subscription | undefined;
-  constructor(private route: ActivatedRoute) { }
+  public items: any[] = [];
+  constructor(private route: ActivatedRoute, private db: DatabaseService, public login: LoginService) { }
 
   ngOnInit() {
     this.routeSub = this.route.params.subscribe(params => {
-      this.id = params['id'] //log the value of id
+      this.id = params['id']
     });
+    this.db.getItems(this.id!).then((result) => this.items = result);
   }
 
   ngOnDestroy() {
     this.routeSub!.unsubscribe();
   }
 
+  public leaveEvent(): void{
+    this.db.leaveEvent(this.id!);
+  }
+
+  public deleteItem(idItem:string): void{
+    this.db.deleteItem(idItem);
+  }
+
+  public updateBought(idItem: string, bought: boolean){
+    this.db.updateBought(idItem, bought);
+  }
 }

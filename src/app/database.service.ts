@@ -3,10 +3,10 @@ import {
   getFirestore,
   doc,
   collection,
-  addDoc,
   getDocs,
   setDoc,
   updateDoc,
+  deleteDoc,
   arrayUnion,
   arrayRemove,
   query,
@@ -38,26 +38,44 @@ export class DatabaseService {
     name: string,
     date: string,
     password: string,
-    user: string
+    solo: boolean,
   ): Promise<void> {
     await setDoc(doc(this.db, 'events', name), {
       name: name,
       date: date,
       password: password,
-      users: [user],
+      solo: solo,
+      users: [this.login.username],
     });
   }
 
   public async addItem(
     name: string,
     price: number,
-    link: string
+    link: string,
+    event: string,
   ): Promise<void> {
     await setDoc(doc(this.db, 'items', name), {
+      name: name,
       price: price,
       link: link,
+      event: event,
+      user: this.login.username,
     });
   }
+  public async deleteItem(id:string): Promise<void> {
+    console.log(id)
+    const q = query(
+      collection(this.db, 'items'),
+      where('name', '==', id)
+    );
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach(async (document) => {
+      const item = doc(this.db, 'items', document.id);
+      await deleteDoc(item)
+    });
+  }
+
 
   public async joinEvent(password: string): Promise<void> {
     const q = query(
@@ -73,6 +91,20 @@ export class DatabaseService {
     });
   }
 
+  public async leaveEvent(id:string): Promise<void> {
+    const q = query(
+      collection(this.db, 'events'),
+      where('name', '==', id)
+    );
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach(async (document) => {
+      const event = doc(this.db, 'events', document.id);
+      await updateDoc(event, {
+        users: arrayRemove(this.login.username),
+      });
+    });
+  }
+
   public async getData(): Promise<any[]> {
     const eventsList: any[] = [];
     const q = query(
@@ -84,5 +116,40 @@ export class DatabaseService {
       eventsList.push(doc.id);
     });
     return eventsList;
+  }
+
+  public async getEvent(eventName: string): Promise<any[]> {
+    const eventDetails: any[] = [];
+    const q = query(
+      collection(this.db, 'events'),
+      where(doc.name, 'array-contains', eventName)
+    );
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+      eventDetails.push(doc.id);
+    });
+    return eventDetails;
+  }
+
+  public async getItems(id: string): Promise<any[]> {
+    const eventsList: any[] = [];
+    const q = query(
+      collection(this.db, 'items'),
+      where('event', '==', id)
+    );
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+      eventsList.push(doc.data());
+    });
+    
+    return eventsList;
+  }
+
+  public async updateBought(id: string, b: boolean) {
+    await updateDoc(doc(this.db, 'items', id), {
+      bought: !b
+    }).then(() => location.reload());
+    console.log(b);
+    
   }
 }

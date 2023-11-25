@@ -1,16 +1,65 @@
-<div class="flex flex-col justify-center items-center h-screen">
-  <p class="mt-20 ml-4 font-bold text-xl">{{ id }}</p>
-  <ul class="ml-4">
-    <li>FakeItem</li>
-    <li>FakeItem</li>
-    <li>FakeItem</li>
-    <li>FakeItem</li>
-  </ul>
-  <!-- [routerLink]="['/',id,'add-item']" -->
-  <button
-  [routerLink]="['/add-item']"
-    class="bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 text-white font-bold py-2 px-4 rounded mt-4"
-  >
-    Add item
-  </button>
+<div class="flex flex-col justify-center items-center min-h-screen bg-gray-100">
+  <p class="font-bold text-xl">{{ id }}</p>
+
+  <table class="table-auto w-full mt-8">
+    <thead>
+      <tr>
+        <th class="px-4 py-2 text-left">Name</th>
+        <th class="px-4 py-2 text-left">Price(€)</th>
+        <th class="px-4 py-2 text-left">Link</th>
+        <th class="px-4 py-2 text-left">Person</th>
+        <th class="px-4 py-2 text-left">Bought</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of items | keyvalue">
+        <td class="border px-4 py-2">{{ item.value.name }}</td>
+        <td class="border px-4 py-2">{{ item.value.price }}</td>
+        <td class="border px-4 py-2">
+          <a
+            [href]="item.value.link"
+            target="_blank"
+            class="inline-block font-medium text-blue-600 hover:text-blue-800 transition duration-300 ease-in-out transform hover:-translate-y-1"
+          >
+            {{ item.value.link }}
+          </a>
+        </td>
+        <td class="border px-4 py-2">{{ item.value.user }}</td>
+        <td class="border px-4 py-2">
+          <input
+            class="ml-10"
+            *ngIf="item.value.user != this.login.username"
+            [checked]="item.value.bought"
+            type="checkbox"
+            (change)="updateBought(item.value.name, item.value.bought)"
+          />
+        </td>
+        <td class="border px-4 py-2">
+          <button
+            *ngIf="item.value.user == this.login.username"
+            (click)="deleteItem(item.value.name)"
+            class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded"
+          >
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="flex justify-center mt-8">
+    <a
+      [routerLink]="['/', id, 'add-item']"
+      class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mr-4"
+    >
+      Add Item
+    </a>
+    <button
+      (click)="leaveEvent()"
+      [routerLink]="['/events']"
+      class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+    >
+      Leave Event
+    </button>
+  </div>
 </div>
