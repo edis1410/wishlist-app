@@ -11,6 +11,6 @@ export class EventsComponent implements OnInit {
   constructor(private db: DatabaseService) {}
 
   ngOnInit(): void {
-    this.db.getData().then((result) => this.events = result);
+    this.db.getEvents().then((result) => this.events = result);
   }
 }
