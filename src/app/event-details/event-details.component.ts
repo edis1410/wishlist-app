@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { DatabaseService } from '../database.service';
+import { LoginService } from '../login.service';
 
 @Component({
   selector: 'app-event-details',
@@ -13,7 +14,7 @@ export class EventDetailsComponent {
   public id: string | undefined;
   private routeSub: Subscription | undefined;
   public items: any[] = [];
-  constructor(private route: ActivatedRoute, private db: DatabaseService) { }
+  constructor(private route: ActivatedRoute, private db: DatabaseService, public login: LoginService) { }
 
   ngOnInit() {
     this.routeSub = this.route.params.subscribe(params => {

@@ -38,11 +38,13 @@ export class DatabaseService {
     name: string,
     date: string,
     password: string,
+    solo: boolean,
   ): Promise<void> {
     await setDoc(doc(this.db, 'events', name), {
       name: name,
       date: date,
       password: password,
+      solo: solo,
       users: [this.login.username],
     });
   }
@@ -114,6 +116,19 @@ export class DatabaseService {
       eventsList.push(doc.id);
     });
     return eventsList;
+  }
+
+  public async getEvent(eventName: string): Promise<any[]> {
+    const eventDetails: any[] = [];
+    const q = query(
+      collection(this.db, 'events'),
+      where(doc.name, 'array-contains', eventName)
+    );
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+      eventDetails.push(doc.id);
+    });
+    return eventDetails;
   }
 
   public async getItems(id: string): Promise<any[]> {

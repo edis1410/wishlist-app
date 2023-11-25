@@ -26,10 +26,17 @@
         </td>
         <td class="border px-4 py-2">{{ item.value.user }}</td>
         <td class="border px-4 py-2">
-          <input class="ml-10" [checked]="item.value.bought" type="checkbox" (change)="updateBought(item.value.name, item.value.bought)"/>
+          <input
+            class="ml-10"
+            *ngIf="item.value.user != this.login.username"
+            [checked]="item.value.bought"
+            type="checkbox"
+            (change)="updateBought(item.value.name, item.value.bought)"
+          />
         </td>
         <td class="border px-4 py-2">
           <button
+            *ngIf="item.value.user == this.login.username"
             (click)="deleteItem(item.value.name)"
             class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded"
           >

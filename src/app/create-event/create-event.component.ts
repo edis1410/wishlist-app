@@ -12,16 +12,18 @@ import { LoginService } from '../login.service';
 export class CreateEventComponent {
   show: boolean = false;
 
-  constructor(private fb: FormBuilder, private router: Router, private db: DatabaseService, private login: LoginService) {}
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private db: DatabaseService,
+    private login: LoginService
+  ) {}
 
   public createEventForm = this.fb.group({
-    name: this.fb.control<string | null>(null, [
-      Validators.required,
-    ]),
+    name: this.fb.control<string | null>(null, [Validators.required]),
     date: this.fb.control<string>('', [Validators.required]),
-    password: this.fb.control<string | null>(null, [
-      Validators.required,
-    ]),
+    password: this.fb.control<string | null>(null, [Validators.required]),
+    solo: this.fb.control<boolean | null>(null, [Validators.required]),
   });
 
   get name() {
@@ -33,18 +35,24 @@ export class CreateEventComponent {
   get password() {
     return this.createEventForm.get('password');
   }
+  get solo() {
+    return this.createEventForm.get('solo');
+  }
   passwordShow() {
     this.show = !this.show;
-}
+  }
 
   public createEvent(): void {
-      this.db.createEvent(this.name?.value!, this.date?.value!, this.password?.value!);
+    this.db.createEvent(
+      this.name?.value!,
+      this.date?.value!,
+      this.password?.value!,
+      this.solo?.value!
+    );
   }
 
   public joinEventForm = this.fb.group({
-    join: this.fb.control<string | null>(null, [
-      Validators.required,
-    ])
+    join: this.fb.control<string | null>(null, [Validators.required]),
   });
 
   get join() {

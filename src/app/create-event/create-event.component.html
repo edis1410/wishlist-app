@@ -51,6 +51,27 @@
           </button>
         </div>
       </div>
+      <div>
+        <label for="solo" class="block text-gray-700 font-medium mb-2">
+          Multiple people getting gifts?
+        </label>
+        <input
+          id="true"
+          type="radio"
+          formControlName="solo"
+          value="false"
+          class=""
+        />
+        <label for="true">Yes</label>
+        <input
+          id="false"
+          type="radio"
+          formControlName="solo"
+          value="true"
+          class=""
+        />
+        <label for="false">No</label>
+      </div>
       <div class="flex items-center justify-end">
         <button
           [routerLink]="['/events']"
