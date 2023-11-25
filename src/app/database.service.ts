@@ -3,6 +3,7 @@ import {
   getFirestore,
   doc,
   collection,
+  getDoc,
   getDocs,
   setDoc,
   updateDoc,
@@ -52,27 +53,41 @@ export class DatabaseService {
     date: string,
     password: string,
     solo: boolean,
+    admin: string,
   ): Promise<void> {
-    await setDoc(doc(this.db, 'events', this.generateRandomId()), {
+    const id = this.generateRandomId();
+    await setDoc(doc(this.db, 'events', id), {
+      id: id,
       name: name,
       date: date,
       password: password,
       solo: solo,
+      admin: admin,
       users: [this.login.username],
     });
   }
 
-  public async getEvent(eventName: string): Promise<any[]> {
+  public async getEvent(eventId: string): Promise<any> {
     const eventDetails: any[] = [];
-    const q = query(
-      collection(this.db, 'events'),
-      where(doc.name, 'array-contains', eventName)
-    );
-    const querySnapshot = await getDocs(q);
-    querySnapshot.forEach((doc) => {
-      eventDetails.push(doc.id);
-    });
-    return eventDetails;
+  
+    try {
+      const eventDocRef = doc(this.db, 'events', eventId);
+      const eventDocSnapshot = await getDoc(eventDocRef);
+  
+      if (eventDocSnapshot.exists()) {
+        // If the document exists, return its data
+        console.log(eventDocSnapshot.data())
+        return eventDocSnapshot.data();
+      } else {
+        // Document doesn't exist
+        console.log('Document does not exist');
+        return null;
+      }
+    } catch (error) {
+      // Handle errors, log, or throw if necessary
+      console.error('Error fetching event:', error);
+      throw error;
+    }
   }
 
   public async joinEvent(password: string): Promise<void> {
@@ -96,7 +111,9 @@ export class DatabaseService {
     );
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach(async (document) => {
-      const event = doc(this.db, 'events', document.id);
+      const eventData = document.data();
+      const name = eventData['name'];
+      const event = doc(this.db, 'events', name);
       await updateDoc(event, {
         users: arrayRemove(this.login.username),
       });
@@ -113,7 +130,7 @@ export class DatabaseService {
     querySnapshot.forEach((doc) => {      
       const eventData = doc.data();
       const name = eventData['name'];
-      eventsList.push(name);
+      eventsList.push(eventData);
     });
     return eventsList;
   }

@@ -1,5 +1,5 @@
 <div class="flex flex-col justify-center items-center min-h-screen bg-gray-100">
-  <p class="font-bold text-xl">{{ id }}</p>
+  <p class="font-bold text-xl">{{ eventName }}</p>
 
   <table class="table-auto w-full mt-8">
     <thead>
@@ -49,6 +49,7 @@
 
   <div class="flex justify-center mt-8">
     <a
+    *ngIf="eventSolo && this.login.username == eventAdmin"
       [routerLink]="['/', id, 'add-item']"
       class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mr-4"
     >
