@@ -47,7 +47,8 @@ export class CreateEventComponent {
       this.name?.value!,
       this.date?.value!,
       this.password?.value!,
-      this.solo?.value!
+      this.solo?.value!,
+      this.login.username
     );
   }
 
