@@ -35,6 +35,7 @@ export class AddItemComponent {
   public addItemForm = this.fb.group({
     name: this.fb.control<string>('', [Validators.required]),
     price: this.fb.control<string>('', [Validators.required]),
+    note: this.fb.control<string>('', [Validators.required]),
     link: this.fb.control<string>('', [Validators.required]),
   });
 
@@ -43,6 +44,9 @@ export class AddItemComponent {
   }
   get price() {
     return this.addItemForm.get('price');
+  }
+  get note() {
+    return this.addItemForm.get('note');
   }
   get link() {
     return this.addItemForm.get('link');
@@ -53,6 +57,7 @@ export class AddItemComponent {
       this.db.addItem(
         this.name?.value!,
         parseFloat(this.price?.value!),
+        this.note?.value!,
         this.link?.value!,
         this.id!
        ).then(() => this._location.back());

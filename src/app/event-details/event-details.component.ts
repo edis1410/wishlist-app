@@ -32,7 +32,7 @@ export class EventDetailsComponent {
     this.db
       .getEvent(this.id!)
       .then((data) => {
-       this.eventName = data.name;
+        this.eventName = data.name;
         this.eventSolo = data.solo;
         this.eventDate = data.date;
         this.eventAdmin = data.admin;
@@ -40,7 +40,6 @@ export class EventDetailsComponent {
       .catch((error) => {
         console.error('Error fetching event details:', error);
       });
-
   }
 
   ngOnDestroy() {

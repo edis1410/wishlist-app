@@ -75,16 +75,12 @@ export class DatabaseService {
       const eventDocSnapshot = await getDoc(eventDocRef);
   
       if (eventDocSnapshot.exists()) {
-        // If the document exists, return its data
-        console.log(eventDocSnapshot.data())
         return eventDocSnapshot.data();
       } else {
-        // Document doesn't exist
         console.log('Document does not exist');
         return null;
       }
     } catch (error) {
-      // Handle errors, log, or throw if necessary
       console.error('Error fetching event:', error);
       throw error;
     }
@@ -135,19 +131,6 @@ export class DatabaseService {
     return eventsList;
   }
 
-  // public async getEvents(): Promise<any[]> {
-  //   const eventsList: any[] = [];
-  //   const q = query(
-  //     collection(this.db, 'events'),
-  //     where('users', 'array-contains', this.login.username)
-  //   );
-  //   const querySnapshot = await getDocs(q);
-  //   querySnapshot.forEach((doc) => {
-  //     eventsList.push(doc.id);
-  //   });
-  //   return eventsList;
-  // }
-
   public async getItems(id: string): Promise<any[]> {
     const eventsList: any[] = [];
     const q = query(
@@ -165,35 +148,36 @@ export class DatabaseService {
   public async addItem(
     name: string,
     price: number,
+    note: string,
     link: string,
     event: string,
   ): Promise<void> {
-    await setDoc(doc(this.db, 'items', name), {
+    const id = this.generateRandomId();
+    await setDoc(doc(this.db, 'items', id), {
+      id: id,
       name: name,
       price: price,
+      note: note,
       link: link,
       event: event,
       user: this.login.username,
     });
   }
   public async deleteItem(id:string): Promise<void> {
-    console.log(id)
     const q = query(
       collection(this.db, 'items'),
-      where('name', '==', id)
+      where('id', '==', id)
     );
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach(async (document) => {
       const item = doc(this.db, 'items', document.id);
-      await deleteDoc(item)
+      await deleteDoc(item).then(() => location.reload());   
     });
   }
 
   public async updateBought(id: string, b: boolean) {
     await updateDoc(doc(this.db, 'items', id), {
       bought: !b
-    }).then(() => location.reload());
-    console.log(b);
-    
+    }).then(() => location.reload());   
   }
 }
