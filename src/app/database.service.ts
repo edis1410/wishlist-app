@@ -116,6 +116,18 @@ export class DatabaseService {
     });
   }
 
+  public async deleteEvent(id:string): Promise<void> {
+    const q = query(
+      collection(this.db, 'events'),
+      where('id', '==', id)
+    );
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach(async (document) => {
+      const item = doc(this.db, 'events', document.id);
+      await deleteDoc(item);   
+    });
+  }
+
   public async getEvents(): Promise<any[]> {
     const eventsList: any[] = [];
     const q = query(

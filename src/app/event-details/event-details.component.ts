@@ -50,6 +50,10 @@ export class EventDetailsComponent {
     this.db.leaveEvent(this.id!);
   }
 
+  public deleteEvent(): void {
+    this.db.deleteEvent(this.id!);
+  }
+  
   public deleteItem(idItem: string): void {
     this.db.deleteItem(idItem);
   }
