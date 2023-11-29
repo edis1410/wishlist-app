@@ -103,12 +103,12 @@ export class DatabaseService {
   public async leaveEvent(id:string): Promise<void> {
     const q = query(
       collection(this.db, 'events'),
-      where('name', '==', id)
+      where('id', '==', id)
     );
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach(async (document) => {
       const eventData = document.data();
-      const name = eventData['name'];
+      const name = eventData['id'];
       const event = doc(this.db, 'events', name);
       await updateDoc(event, {
         users: arrayRemove(this.login.username),

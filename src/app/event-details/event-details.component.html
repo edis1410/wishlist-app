@@ -1,15 +1,15 @@
-<div class="flex flex-col justify-center items-center min-h-screen bg-gray-100">
-  <p class="font-bold text-xl">{{ eventName }}</p>
+<div class="flex flex-col items-center min-h-screen bg-gray-100">
+  <p class="font-bold mt-20 text-xl">{{ eventName }}</p>
 
-  <table class="table-auto w-full mt-8">
+  <table class="table-auto w-1/2 mt-8">
     <thead>
       <tr>
         <th class="px-4 py-2 text-left">Name</th>
         <th class="px-4 py-2 text-left">Price(€)</th>
-        <th class="px-4 py-2 text-left">Note</th>
-        <th class="px-4 py-2 text-left">Link</th>
+        <th class="px-4 py-2 text-left">Details</th>
+        <th class="px-4 py-2 text-left w-7">Link</th>
         <th class="px-4 py-2 text-left">Person</th>
-        <th class="px-4 py-2 text-left">Bought</th>
+        <th class="px-4 py-2 text-left w-5">Bought</th>
       </tr>
     </thead>
     <tbody>
@@ -23,20 +23,20 @@
             target="_blank"
             class="inline-block font-medium text-blue-600 hover:text-blue-800 transition duration-300 ease-in-out transform hover:-translate-y-1"
           >
-            {{ item.value.link }}
+            Link
           </a>
         </td>
         <td class="border px-4 py-2">{{ item.value.user }}</td>
         <td class="border px-4 py-2">
           <input
-            class="ml-10"
+            class="ml-5 cursor-pointer"
             *ngIf="item.value.user != this.login.username"
             [checked]="item.value.bought"
             type="checkbox"
             (change)="updateBought(item.value.id, item.value.bought)"
           />
         </td>
-        <td class="border px-4 py-2">
+        <td class="px-4 py-2">
           <button
             *ngIf="item.value.user == this.login.username"
             (click)="deleteItem(item.value.id)"
@@ -51,7 +51,7 @@
 
   <div class="flex justify-center mt-8">
     <a
-    *ngIf="eventSolo && this.login.username == eventAdmin"
+    
       [routerLink]="['/', id, 'add-item']"
       class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mr-4"
     >
