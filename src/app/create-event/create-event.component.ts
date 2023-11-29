@@ -51,16 +51,4 @@ export class CreateEventComponent {
       this.login.username
     );
   }
-
-  public joinEventForm = this.fb.group({
-    join: this.fb.control<string | null>(null, [Validators.required]),
-  });
-
-  get join() {
-    return this.joinEventForm.get('join');
-  }
-
-  public joinEvent(): void {
-    this.db.joinEvent(this.join?.value!);
-  }
 }

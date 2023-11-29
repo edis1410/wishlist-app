@@ -1,0 +1,36 @@
+<div class="flex justify-center space-x-16 mt-28">
+  <!-- Join an event -->
+  <div class="w-full max-w-lg bg-white rounded-lg shadow-md">
+    <h2 class="px-6 py-4 text-2xl font-bold">Join an event</h2>
+    <form
+      class="px-6 py-4 space-y-4"
+      [formGroup]="joinEventForm"
+      (ngSubmit)="joinEvent()"
+    >
+      <!-- Event password -->
+      <div>
+        <label for="join" class="block text-gray-700 font-medium mb-2">
+          Event password
+        </label>
+        <input
+          id="join"
+          formControlName="join"
+          type="password"
+          required
+          class="w-full border-gray-300 px-4 py-2 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+          placeholder="Enter the event password"
+        />
+      </div>
+      <!-- Join event button -->
+      <div class="flex justify-end">
+        <button
+          [routerLink]="['/dashboard']"
+          type="submit"
+          class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+        >
+          Join event
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
