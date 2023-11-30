@@ -3,6 +3,8 @@
     <a routerLink="dashboard" class="text-xl font-semibold text-gray-900 dark:text-white">
       Wishlist App
     </a>
+    <button class="border bg-slate-50" (click)="changeLang('sl')">SLO</button>
+    <button class="border bg-slate-50" (click)="changeLang('en')">ENG</button>
     <div *ngIf="login.loggedIn" class="flex items-center">
       <div class="relative">
         <button type="button" class="flex items-center justify-center w-10 h-10 rounded-full bg-gray-800 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" aria-expanded="false" (click)="dropdownToggle()" (clickOutside)="showDropdown = false">
@@ -15,16 +17,16 @@
           </div>
           <ul class="py-1">
             <li>
-              <a routerLink="dashboard" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
+              <a routerLink="dashboard" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white">{{'dashboard'| transloco}}</a>
             </li>
             <li>
-              <a routerLink="events" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white">Events</a>
+              <a routerLink="events" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white">{{'events'| transloco}}</a>
             </li>
             <li>
-              <a routerLink="create-event" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white">Create an Event</a>
+              <a routerLink="create-event" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white">{{'createEvent'| transloco}}</a>
             </li>
             <li>
-              <a class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white cursor-pointer" (click)="logOutTry()">Sign out</a>
+              <a class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white cursor-pointer" (click)="logOutTry()">{{'signout'| transloco}}</a>
             </li>
           </ul>
         </div>

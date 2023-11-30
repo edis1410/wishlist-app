@@ -1,0 +1,33 @@
+{
+    "oops": "Oops!",
+    "notFound": "We couldn't find the page you're looking for.",
+    "home": "Go to the home page",
+
+    "landing": "Log in to your account or register a new one",
+    "login": "Log in",
+    "register": "Register",
+
+    "dashboard": "Dashboard",
+    "events": "Events",
+    "createEvent": "Create an event",
+    "signout": "Sign out",
+
+    "welcome": "Welcome back!",
+    "email": "Email",
+    "emailPlaceholder": "Enter your Email address",
+    "emailRequired": "The email is required",
+    "emailFormat": "The email format is not correct",
+    "password": "Password",
+    "confirmPassword": "Confirm password",
+    "passwordPlaceholder": "Enter your password",
+    "passwordRequired": "The password is required",
+    "loginError": "The email or password is wrong",
+    "dontHave": "Don't have an account?",
+    "registerHere": "Register here!",
+
+    "newAccount": "Create a new account",
+    "username": "Username",
+    "error": "Something went wrong. Please try again.",
+    "already": "Already have an account?",
+    "loginHere": "Log in here!"
+}
