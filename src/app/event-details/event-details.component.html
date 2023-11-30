@@ -1,66 +1,68 @@
-<div class="flex flex-col items-center min-h-screen bg-gray-100">
-  <p class="font-bold mt-20 text-xl">{{ eventName }}</p>
+<div class="flex flex-col items-center min-h-screen bg-gray-100 py-8 sm:py-12">
+  <p class="font-bold text-xl sm:text-2xl mt-7">{{ eventName }}</p>
 
-  <table class="table-auto w-1/2 mt-8">
-    <thead>
-      <tr>
-        <th class="px-4 py-2 text-left">{{'itemName'| transloco}}</th>
-        <th class="px-4 py-2 text-left">{{'price'| transloco}}</th>
-        <th class="px-4 py-2 text-left">{{'details'| transloco}}</th>
-        <th class="px-4 py-2 text-left w-7">{{'link'| transloco}}</th>
-        <th class="px-4 py-2 text-left">{{'user'| transloco}}</th>
-        <th class="px-4 py-2 text-left w-5">{{'bought'| transloco}}</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let item of items | keyvalue">
-        <td class="border px-4 py-2">{{ item.value.name }}</td>
-        <td class="border px-4 py-2">{{ item.value.price }}</td>
-        <td class="border px-4 py-2">{{ item.value.note }}</td>
-        <td class="border px-4 py-2">
-          <a
-            [href]="item.value.link"
-            target="_blank"
-            class="inline-block font-medium text-blue-600 hover:text-blue-800 transition duration-300 ease-in-out transform hover:-translate-y-1"
-          >
-          {{'link'| transloco}}
-          </a>
-        </td>
-        <td class="border px-4 py-2">{{ item.value.user }}</td>
-        <td class="border px-4 py-2">
-          <input
-            class="ml-5 cursor-pointer"
-            *ngIf="item.value.user != this.login.username"
-            [checked]="item.value.bought"
-            type="checkbox"
-            (change)="updateBought(item.value.id, item.value.bought)"
-          />
-        </td>
-        <td class="px-4 py-2">
-          <button
-            *ngIf="item.value.user == this.login.username"
-            (click)="deleteItem(item.value.id)"
-            class="bg-rose-500 hover:bg-rose-700 text-white font-bold py-1 px-2 rounded"
-          >
-          {{'delete'| transloco}}
-          </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="overflow-x-auto w-full sm:w-5/6 lg:w-3/4 mt-4 sm:mt-8">
+    <table class="min-w-full">
+      <thead>
+        <tr>
+          <th class="px-4 py-2 text-left">{{ 'itemName' | transloco }}</th>
+          <th class="px-4 py-2 text-left">{{ 'price' | transloco }}</th>
+          <th class="px-4 py-2 text-left">{{ 'details' | transloco }}</th>
+          <th class="px-4 py-2 text-left w-7">{{ 'link' | transloco }}</th>
+          <th class="px-4 py-2 text-left">{{ 'user' | transloco }}</th>
+          <th class="px-4 py-2 text-left w-5">{{ 'bought' | transloco }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of items | keyvalue">
+          <td class="border px-4 py-2">{{ item.value.name }}</td>
+          <td class="border px-4 py-2">{{ item.value.price }}</td>
+          <td class="border px-4 py-2">{{ item.value.note }}</td>
+          <td class="border px-4 py-2">
+            <a
+              [href]="item.value.link"
+              target="_blank"
+              class="inline-block font-medium text-blue-600 hover:text-blue-800 transition duration-300 ease-in-out transform hover:-translate-y-1"
+            >
+              {{ 'link' | transloco }}
+            </a>
+          </td>
+          <td class="border px-4 py-2">{{ item.value.user }}</td>
+          <td class="border px-4 py-2">
+            <input
+              class="ml-5 cursor-pointer"
+              *ngIf="item.value.user != this.login.username"
+              [checked]="item.value.bought"
+              type="checkbox"
+              (change)="updateBought(item.value.id, item.value.bought)"
+            />
+          </td>
+          <td class="px-4 py-2">
+            <button
+              *ngIf="item.value.user == this.login.username"
+              (click)="deleteItem(item.value.id)"
+              class="bg-rose-500 hover:bg-rose-700 text-white font-bold py-1 px-2 rounded"
+            >
+              {{ 'delete' | transloco }}
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
-  <div class="flex justify-center mt-8">
+  <div class="flex flex-col sm:flex-row justify-center items-center mt-8">
     <a
     
       [routerLink]="['/', id, 'add-item']"
-      class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mr-4"
+      class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mb-2 sm:mb-0 sm:mr-4"
     >
     {{'addItem'| transloco}}
     </a>
     <button
       (click)="leaveEvent()"
       [routerLink]="['/events']"
-      class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+      class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-2 sm:mb-0 sm:mr-4"
     >
     {{'leaveEvent'| transloco}}
     </button>
@@ -68,9 +70,11 @@
     *ngIf="this.login.username == eventAdmin"
       (click)="deleteEvent()"
       [routerLink]="['/events']"
-      class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded ml-4"
+      class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mb-2 sm:mb-0 sm:mr-4"
     >
     {{'deleteEvent'| transloco}}
     </button>
   </div>
 </div>
+
+

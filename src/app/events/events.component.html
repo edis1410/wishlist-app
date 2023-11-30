@@ -1,12 +1,28 @@
 <div class="bg-gray-100 min-h-screen">
-    <div class="container mx-auto px-4 py-8 w-1/2">
-      <h1 class="mt-16 text-3xl font-bold text-gray-800 mb-8">{{'myEvents'| transloco}}</h1>
-      <ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-        <li *ngFor="let event of events" (click)="goToEventDetails(event.id)" class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg cursor-pointer">
-            <div class="p-4">
-              <h2 class="text-lg font-bold text-gray-800">{{ event.name }}</h2>
-            </div>
-        </li>
-      </ul>
-    </div>
+  <div class="container mx-auto px-4 py-8 w-3/4 sm:w-3/4 lg:w-3/4">
+    <h1 class="mt-16 text-3xl font-bold text-gray-800 mb-8">{{ 'myEvents' | transloco }}</h1>
+    <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <li *ngFor="let event of events" (click)="goToEventDetails(event.id)" class="event-card">
+        <div class="p-4">
+          <h2 class="text-lg font-bold text-gray-800">{{ event.name }}</h2>
+        </div>
+      </li>
+    </ul>
   </div>
+</div>
+
+<!-- TailwindCSS classes -->
+<style>
+  .event-card {
+    background-color: #ffffff;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    transition: box-shadow 0.3s ease-in-out;
+    cursor: pointer;
+  }
+
+  .event-card:hover {
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15), 0 3px 6px rgba(0, 0, 0, 0.12);
+  }
+</style>
