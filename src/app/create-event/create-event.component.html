@@ -1,7 +1,7 @@
 <div class="flex justify-center space-x-16 mt-28">
   <!-- Create a new event -->
   <div class="w-full max-w-lg bg-white rounded-lg shadow-md">
-    <h2 class="px-6 py-4 text-2xl font-bold">Create a new event</h2>
+    <h2 class="px-6 py-4 text-2xl font-bold">{{'createEventTitle'| transloco}}</h2>
     <form
       class="px-6 py-4 space-y-4"
       [formGroup]="createEventForm"
@@ -10,7 +10,7 @@
       <!-- Event name -->
       <div>
         <label for="name" class="block text-gray-700 font-medium mb-2">
-          Event name
+          {{'eventName'| transloco}}
         </label>
         <input
           id="name"
@@ -18,13 +18,13 @@
           formControlName="name"
           required
           class="w-full border-gray-300 px-4 py-2 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-          placeholder="Enter the event name"
+          placeholder="{{'eventNamePlaceholder'| transloco}}"
         />
       </div>
       <!-- Date -->
       <div>
         <label for="date" class="block text-gray-700 font-medium mb-2">
-          Date
+          {{'date'| transloco}}
         </label>
         <input
           id="date"
@@ -32,13 +32,12 @@
           formControlName="date"
           required
           class="w-full border-gray-300 px-4 py-2 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-          placeholder="Enter the event date"
         />
       </div>
       <!-- Event password -->
       <div>
         <label for="password" class="block text-gray-700 font-medium mb-2">
-          Event password
+          {{'eventPassword'| transloco}}
         </label>
         <div class="flex items-center space-x-2">
           <input
@@ -47,16 +46,17 @@
             formControlName="password"
             required
             class="w-full border-gray-300 px-4 py-2 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-            placeholder="Enter a password for other users"
+            placeholder="{{'eventPassPlaceholder'| transloco}}"
           />
           <button class="border px-3 py-1 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white" (click)="passwordShow()">
-            {{ show ? "Hide password" : "Show password" }}
+            <!-- {{ show ? "{{'hidePass'| transloco}}" : "{{'showPass'| transloco}}" }} -->
+            {{'showHidePass'| transloco}}
           </button>
         </div>
       </div>
       <!-- Multiple people getting gifts? -->
       <div class="flex items-center space-x-4">
-        <label for="true" class="text-gray-700 font-medium">Multiple people getting gifts?</label>
+        <label for="true" class="text-gray-700 font-medium">{{'multiple'| transloco}}</label>
         <input
           id="true"
           type="radio"
@@ -64,7 +64,7 @@
           value="false"
           class=""
         />
-        <label for="true">Yes</label>
+        <label for="true">{{'yes'| transloco}}</label>
         <input
           id="false"
           type="radio"
@@ -72,7 +72,7 @@
           value="true"
           class=""
         />
-        <label for="false">No</label>
+        <label for="false">{{'no'| transloco}}</label>
       </div>
       <!-- Create event button -->
       <div class="flex justify-end">
@@ -81,7 +81,7 @@
           type="submit"
           class="inline-flex items-center justify-center px-6 py-3 mt-4 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
         >
-          Create event
+        {{'createEvent'| transloco}}
         </button>
       </div>
     </form>
