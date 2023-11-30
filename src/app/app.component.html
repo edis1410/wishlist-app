@@ -3,9 +3,7 @@
     <a routerLink="dashboard" class="text-xl font-semibold text-gray-900 dark:text-white">
       Wishlist App
     </a>
-    <button class="border bg-slate-50" (click)="changeLang('sl')">SLO</button>
-    <button class="border bg-slate-50" (click)="changeLang('en')">ENG</button>
-    <div *ngIf="login.loggedIn" class="flex items-center">
+    <div *ngIf="login.loggedIn" class="flex items-center ml-auto space-x-4">
       <div class="relative">
         <button type="button" class="flex items-center justify-center w-10 h-10 rounded-full bg-gray-800 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" aria-expanded="false" (click)="dropdownToggle()" (clickOutside)="showDropdown = false">
           <img class="w-8 h-8 rounded-full" src="../favicon.ico" alt="user photo">
@@ -31,6 +29,8 @@
           </ul>
         </div>
       </div>
+      <button class="flex border bg-cover bg-center w-8 h-5" (click)="changeLang('sl')" style="background-image: url('../assets/images/slo.png')"></button>
+      <button class="flex border bg-cover bg-center w-8 h-5" (click)="changeLang('en')" style="background-image: url('../assets/images/uk.png')"></button>
     </div>
   </div>
 </nav>
