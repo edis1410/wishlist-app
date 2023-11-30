@@ -4,7 +4,7 @@
     <form class="px-6 py-4 space-y-4" [formGroup]="createEventForm" (ngSubmit)="createEvent()">
       <div>
         <label for="name" class="block text-gray-700 font-medium mb-2">{{'eventName'| transloco}}</label>
-        <input id="name" type="text" formControlName="name" required class="input-field" placeholder="{{'eventNamePlaceholder'| transloco}}" />
+        <input id="name" type="text" formControlName="name"  class="input-field" placeholder="{{'eventNamePlaceholder'| transloco}}" required/>
       </div>
       <div>
         <label for="date" class="block text-gray-700 font-medium mb-2">{{'date'| transloco}}</label>
@@ -21,13 +21,13 @@
       </div>
       <div class="flex items-center space-x-4">
         <label for="true" class="text-gray-700 font-medium">{{'multiple'| transloco}}</label>
-        <input id="true" type="radio" formControlName="solo" value="false" class="" />
+        <input id="true" type="radio" formControlName="solo"  value="false" checked/>
         <label for="true">{{'yes'| transloco}}</label>
-        <input id="false" type="radio" formControlName="solo" value="true" class="" />
+        <input id="false" type="radio" formControlName="solo" value="true"/>
         <label for="false">{{'no'| transloco}}</label>
       </div>
       <div class="flex justify-end">
-        <button [routerLink]="['/events']" type="submit" class="btn-submit">
+        <button type="submit" class="btn-submit">
           {{'createEvent'| transloco}}
         </button>
       </div>

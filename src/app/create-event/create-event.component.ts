@@ -20,10 +20,10 @@ export class CreateEventComponent {
   ) {}
 
   public createEventForm = this.fb.group({
-    name: this.fb.control<string | null>(null, [Validators.required]),
+    name: this.fb.control<string>('', [Validators.required]),
     date: this.fb.control<string>('', [Validators.required]),
-    password: this.fb.control<string | null>(null, [Validators.required]),
-    solo: this.fb.control<boolean | null>(null, [Validators.required]),
+    password: this.fb.control<string>('', [Validators.required]),
+    solo: this.fb.control<boolean>(true, [Validators.required]),
   });
 
   get name() {
@@ -43,12 +43,16 @@ export class CreateEventComponent {
   }
 
   public createEvent(): void {
-    this.db.createEvent(
+    if (this.createEventForm.valid) {
+      this.db.createEvent(
       this.name?.value!,
       this.date?.value!,
       this.password?.value!,
       this.solo?.value!,
       this.login.username
-    );
+      );
+    }else {
+      console.log('Handle errors');
+    }
   }
 }
