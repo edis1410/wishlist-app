@@ -1,7 +1,7 @@
 <div
   class="flex flex-col items-center justify-center h-screen bg-gradient-to-b from-purple-500 to-pink-500"
 >
-  <h1 class="text-4xl text-white font-bold mb-8">Welcome back!</h1>
+  <h1 class="text-4xl text-white font-bold mb-8">{{'welcome'| transloco}}</h1>
   <form
     class="w-full max-w-md bg-white rounded-lg px-8 pt-6 pb-8 mb-4"
     [formGroup]="loginForm"
@@ -9,7 +9,7 @@
   >
     <div class="mb-4">
       <label class="block text-gray-700 font-bold mb-2" for="email">
-        Email
+        {{'email'| transloco}}
       </label>
       <input
         id="email"
@@ -17,21 +17,21 @@
         formControlName="email"
         required
         class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-        placeholder="Email address"
+        placeholder="{{'emailPlaceholder'| transloco}}"
       />
       <div
         class="text-red-600 mt-2"
         *ngIf="email?.invalid && (email?.dirty || email?.touched)"
       >
-        <div *ngIf="email?.errors?.['required']">The email is required</div>
+        <div *ngIf="email?.errors?.['required']">{{'emailRequired'| transloco}}</div>
         <div *ngIf="email?.errors?.['email']">
-          The email format is not correct
+          {{'emailFormat'| transloco}}
         </div>
       </div>
     </div>
     <div class="mb-4">
       <label class="block text-gray-700 font-bold mb-2" for="password">
-        Password
+        {{'password'| transloco}}
       </label>
       <input
         id="password"
@@ -39,34 +39,34 @@
         formControlName="password"
         required
         class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-        placeholder="Password"
+        placeholder="{{'passwordPlaceholder'| transloco}}"
       />
       <div
         class="text-red-600 mt-2"
         *ngIf="password?.invalid && (password?.dirty || password?.touched)"
       >
         <div *ngIf="password?.errors?.['required']">
-          The password is required
+          {{'passwordRequired'| transloco}}
         </div>
       </div>
     </div>
     <div class="text-red-600 mb-2" *ngIf="logErr === true">
-      The email or password is wrong.
+      {{'loginError'| transloco}}
     </div>
     <div class="flex items-center justify-between">
       <button
         type="submit"
         class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
       >
-        Log in
+      {{'login'| transloco}}
       </button>
       <div class="text-sm">
-        Don't have an account?
+        {{'dontHave'| transloco}}
         <a
           class="ml-1 font-semibold text-purple-500 hover:text-purple-700"
           [routerLink]="['/register']"
         >
-          Register here!
+        {{'registerHere'| transloco}}
         </a>
       </div>
     </div>

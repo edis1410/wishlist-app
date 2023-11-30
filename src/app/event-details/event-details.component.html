@@ -4,12 +4,12 @@
   <table class="table-auto w-1/2 mt-8">
     <thead>
       <tr>
-        <th class="px-4 py-2 text-left">Name</th>
-        <th class="px-4 py-2 text-left">Price(€)</th>
-        <th class="px-4 py-2 text-left">Details</th>
-        <th class="px-4 py-2 text-left w-7">Link</th>
-        <th class="px-4 py-2 text-left">Person</th>
-        <th class="px-4 py-2 text-left w-5">Bought</th>
+        <th class="px-4 py-2 text-left">{{'itemName'| transloco}}</th>
+        <th class="px-4 py-2 text-left">{{'price'| transloco}}</th>
+        <th class="px-4 py-2 text-left">{{'details'| transloco}}</th>
+        <th class="px-4 py-2 text-left w-7">{{'link'| transloco}}</th>
+        <th class="px-4 py-2 text-left">{{'user'| transloco}}</th>
+        <th class="px-4 py-2 text-left w-5">{{'bought'| transloco}}</th>
       </tr>
     </thead>
     <tbody>
@@ -23,7 +23,7 @@
             target="_blank"
             class="inline-block font-medium text-blue-600 hover:text-blue-800 transition duration-300 ease-in-out transform hover:-translate-y-1"
           >
-            Link
+          {{'link'| transloco}}
           </a>
         </td>
         <td class="border px-4 py-2">{{ item.value.user }}</td>
@@ -42,7 +42,7 @@
             (click)="deleteItem(item.value.id)"
             class="bg-rose-500 hover:bg-rose-700 text-white font-bold py-1 px-2 rounded"
           >
-            Delete
+          {{'delete'| transloco}}
           </button>
         </td>
       </tr>
@@ -55,14 +55,14 @@
       [routerLink]="['/', id, 'add-item']"
       class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mr-4"
     >
-      Add Item
+    {{'addItem'| transloco}}
     </a>
     <button
       (click)="leaveEvent()"
       [routerLink]="['/events']"
       class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
     >
-      Leave Event
+    {{'leaveEvent'| transloco}}
     </button>
     <button
     *ngIf="this.login.username == eventAdmin"
@@ -70,7 +70,7 @@
       [routerLink]="['/events']"
       class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded ml-4"
     >
-      Delete Event
+    {{'deleteEvent'| transloco}}
     </button>
   </div>
 </div>

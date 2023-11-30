@@ -3,7 +3,7 @@
 >
   <div class="sm:mx-auto sm:w-full sm:max-w-md">
     <h2 class="mt-6 text-center text-3xl font-extrabold text-white">
-      Create a new account
+      {{'newAccount'| transloco}}
     </h2>
   </div>
 
@@ -16,7 +16,7 @@
       >
         <div>
           <label for="username" class="block font-bold text-gray-700">
-            Username
+            {{'username'| transloco}}
           </label>
           <div class="mt-1">
             <input
@@ -31,7 +31,7 @@
 
         <div>
           <label for="email" class="block font-bold text-gray-700">
-            Email address
+            {{'email'| transloco}}
           </label>
           <div class="mt-1">
             <input
@@ -46,7 +46,7 @@
 
         <div>
           <label for="password" class="block font-bold text-gray-700">
-            Password
+            {{'password'| transloco}}
           </label>
           <div class="mt-1">
             <input
@@ -61,7 +61,7 @@
 
         <div>
           <label for="passwordCheck" class="block font-bold text-gray-700">
-            Confirm Password
+            {{'confirmPassword'| transloco}}
           </label>
           <div class="mt-1">
             <input
@@ -78,14 +78,14 @@
         class="relative block w-full rounded border border-red-400 bg-red-100 px-4 py-3 text-red-700"
         *ngIf="email?.invalid && (email?.dirty || email?.touched)"
       >
-        <div *ngIf="email?.errors?.['required']">The email is required</div>
-        <div *ngIf="email?.errors?.['email']">The email format is not correct</div>
+        <div *ngIf="email?.errors?.['required']">{{'emailRequired'| transloco}}</div>
+        <div *ngIf="email?.errors?.['email']">{{'emailFormat'| transloco}}</div>
       </div>
       <div
         class="relative block w-full rounded border border-red-400 bg-red-100 px-4 py-3 text-red-700"
         *ngIf="password?.invalid && (password?.dirty || password?.touched)"
       >
-        <div *ngIf="password?.errors?.['required']">The password is required</div>
+        <div *ngIf="password?.errors?.['required']">{{'passwordRequired'| transloco}}</div>
       </div>
 
         <div
@@ -93,7 +93,7 @@
           class="mt-3 rounded-md shadow-sm -space-y-px p-2 bg-red-50 border border-red-400"
         >
           <p class="text-sm text-red-700">
-            Something went wrong. Please try again.
+            {{'error'| transloco}}
           </p>
         </div>
 
@@ -102,15 +102,15 @@
             type="submit"
             class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
           >
-            Register
+          {{'register'| transloco}}
           </button>
           <div class="text-sm">
-            Already have an account?
+            {{'already'| transloco}}
             <a
               class="ml-1 font-semibold text-purple-500 hover:text-purple-700"
               [routerLink]="['/login']"
             >
-              Log in here!
+            {{'loginHere'| transloco}}
             </a>
           </div>
         </div>

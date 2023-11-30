@@ -1,0 +1,62 @@
+{
+    "oops": "Oops!",
+    "notFound": "We couldn't find the page you're looking for.",
+    "home": "Go to the home page",
+
+    "landing": "Log in to your account or register a new one",
+    "login": "Log in",
+    "register": "Register",
+
+    "dashboard": "Dashboard",
+    "events": "Events",
+    "createEvent": "Create an event",
+    "signout": "Sign out",
+
+    "welcome": "Welcome back!",
+    "email": "E-mail",
+    "emailPlaceholder": "Enter your E-mail address",
+    "emailRequired": "The E-mail is required",
+    "emailFormat": "The E-mail format is not correct",
+    "password": "Password",
+    "confirmPassword": "Confirm password",
+    "passwordPlaceholder": "Enter your password",
+    "passwordRequired": "The password is required",
+    "loginError": "The E-mail or password is wrong",
+    "dontHave": "Don't have an account?",
+    "registerHere": "Register here!",
+
+    "newAccount": "Create a new account",
+    "username": "Username",
+    "error": "Something went wrong. Please try again.",
+    "already": "Already have an account?",
+    "loginHere": "Log in here!",
+
+    "hello": "Hello",
+    "joinEvent": "Join an event",
+    "joinEventButton": "Join event",
+    "myEvents": "My events",
+
+    "eventPassword": "Event password",
+    "eventPassPlaceholder": "Enter the event password",
+
+    "createEventTitle": "Create a new event",
+    "eventName": "Event name",
+    "eventNamePlaceholder": "Enter the event name",
+    "date": "Date",
+    "showHidePass": "Show/Hide password",
+    "multiple": "Multiple people getting gifts?",
+    "yes": "Yes",
+    "no": "No",
+
+    "itemName": "Name",
+    "price": "Price(€)",
+    "details": "Details",
+    "link": "Link",
+    "user": "User",
+    "bought": "Bought",
+    "delete": "Delete",
+    "addItem": "Add item",
+    "leaveEvent": "Leave event",
+    "deleteEvent": "Delete event"
+
+}
