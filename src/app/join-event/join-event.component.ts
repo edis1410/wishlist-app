@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DatabaseService } from '../database.service';
 import { LoginService } from '../login.service';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-join-event',
@@ -15,7 +16,8 @@ export class JoinEventComponent {
     private fb: FormBuilder,
     private router: Router,
     private db: DatabaseService,
-    private login: LoginService
+    private login: LoginService,
+    private location: Location,
   ) {}
 
   public joinEventForm = this.fb.group({
@@ -28,6 +30,10 @@ export class JoinEventComponent {
 
   public joinEvent(): void {
     this.db.joinEvent(this.join?.value!);
+  }
+  
+  public back(){
+    this.location.back()
   }
 
 }

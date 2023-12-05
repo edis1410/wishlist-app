@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { DatabaseService } from '../database.service';
 import { LoginService } from '../login.service';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-event-details',
@@ -21,7 +22,8 @@ export class EventDetailsComponent {
   constructor(
     private route: ActivatedRoute,
     private db: DatabaseService,
-    public login: LoginService
+    public login: LoginService,
+    private location: Location,
   ) {}
 
   ngOnInit() {
@@ -60,5 +62,8 @@ export class EventDetailsComponent {
 
   public updateBought(idItem: string, bought: boolean) {
     this.db.updateBought(idItem, bought);
+  }
+  public back(){
+    this.location.back()
   }
 }

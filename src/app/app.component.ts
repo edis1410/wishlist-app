@@ -28,7 +28,7 @@ export class AppComponent{
 
   public logOutTry(): void {
     this.login.logOut().then(
-      () => this.router.navigate(['login']),
+      () => this.router.navigate(['']),
       () => console.log('failed logout')
     );
   }

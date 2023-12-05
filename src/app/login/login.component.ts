@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginService } from '../login.service';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,8 @@ export class LoginComponent implements OnInit{
   constructor(
     private login: LoginService,
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private location: Location,
   ) {}
   ngOnInit(): void {
     this.login.logOut();
@@ -54,5 +56,9 @@ export class LoginComponent implements OnInit{
 
   public onFail(): void {
     this.logErr = true;
+  }
+  
+  public back(){
+    this.location.back()
   }
 }

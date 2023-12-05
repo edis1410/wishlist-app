@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DatabaseService } from '../database.service';
 import { LoginService } from '../login.service';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-create-event',
@@ -16,7 +17,8 @@ export class CreateEventComponent {
     private fb: FormBuilder,
     private router: Router,
     private db: DatabaseService,
-    private login: LoginService
+    private login: LoginService,
+    private location: Location,
   ) {}
 
   public createEventForm = this.fb.group({
@@ -50,9 +52,12 @@ export class CreateEventComponent {
       this.password?.value!,
       this.solo?.value!,
       this.login.username
-      );
+      ).then(() => this.location.back());
     }else {
       console.log('Handle errors');
     }
+  }
+  public back(){
+    this.location.back()
   }
 }

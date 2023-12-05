@@ -65,4 +65,7 @@ export class AddItemComponent {
       console.log('Handle errors');
     }
   }
+  public back(){
+    this._location.back()
+  }
 }
