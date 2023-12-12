@@ -57,6 +57,8 @@
     "delete": "Izbriši",
     "addItem": "Dodaj izdelek",
     "leaveEvent": "Zapusti dogodek",
-    "deleteEvent": "Izbriši dogodek"
+    "deleteEvent": "Izbriši dogodek",
+
+    "createdby": "Ustvarjeno od: "
 
 }

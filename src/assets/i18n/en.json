@@ -57,6 +57,8 @@
     "delete": "Delete",
     "addItem": "Add item",
     "leaveEvent": "Leave event",
-    "deleteEvent": "Delete event"
+    "deleteEvent": "Delete event",
+
+    "createdby": "Created by: "
 
 }
