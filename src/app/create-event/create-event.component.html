@@ -1,89 +1,83 @@
-<div class="flex justify-center space-x-16 mt-28">
-  <!-- Create a new event -->
+<div class="flex flex-col min-h-screen items-center bg-gradient-to-bl from-purple-500 to-pink-500">
+  <div class="flex w-full justify-center mt-28">
   <div class="w-full max-w-lg bg-white rounded-lg shadow-md">
     <h2 class="px-6 py-4 text-2xl font-bold">{{'createEventTitle'| transloco}}</h2>
-    <form
-      class="px-6 py-4 space-y-4"
-      [formGroup]="createEventForm"
-      (ngSubmit)="createEvent()"
-    >
-      <!-- Event name -->
+    <form class="px-6 py-4 space-y-4" [formGroup]="createEventForm" (ngSubmit)="createEvent()">
       <div>
-        <label for="name" class="block text-gray-700 font-medium mb-2">
-          {{'eventName'| transloco}}
-        </label>
-        <input
-          id="name"
-          type="text"
-          formControlName="name"
-          required
-          class="w-full border-gray-300 px-4 py-2 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-          placeholder="{{'eventNamePlaceholder'| transloco}}"
-        />
+        <label for="name" class="block text-gray-700 font-medium mb-2">{{'eventName'| transloco}}</label>
+        <input id="name" type="text" formControlName="name"  class="input-field" placeholder="{{'eventNamePlaceholder'| transloco}}" required/>
       </div>
-      <!-- Date -->
       <div>
-        <label for="date" class="block text-gray-700 font-medium mb-2">
-          {{'date'| transloco}}
-        </label>
-        <input
-          id="date"
-          type="date"
-          formControlName="date"
-          required
-          class="w-full border-gray-300 px-4 py-2 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-        />
+        <label for="date" class="block text-gray-700 font-medium mb-2">{{'date'| transloco}}</label>
+        <input id="date" type="date" formControlName="date" required class="input-field" />
       </div>
-      <!-- Event password -->
       <div>
-        <label for="password" class="block text-gray-700 font-medium mb-2">
-          {{'eventPassword'| transloco}}
-        </label>
+        <label for="password" class="block text-gray-700 font-medium mb-2">{{'eventPassword'| transloco}}</label>
         <div class="flex items-center space-x-2">
-          <input
-            id="password"
-            [type]="show ? 'text' : 'password'"
-            formControlName="password"
-            required
-            class="w-full border-gray-300 px-4 py-2 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-            placeholder="{{'eventPassPlaceholder'| transloco}}"
-          />
-          <button class="border px-3 py-1 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white" (click)="passwordShow()">
-            <!-- {{ show ? "{{'hidePass'| transloco}}" : "{{'showPass'| transloco}}" }} -->
+          <input id="password" [type]="show ? 'text' : 'password'" formControlName="password" required class="input-field" placeholder="{{'eventPassPlaceholder'| transloco}}" />
+          <a class="btn-show-hide" (click)="passwordShow()">
             {{'showHidePass'| transloco}}
-          </button>
+          </a>
         </div>
       </div>
-      <!-- Multiple people getting gifts? -->
       <div class="flex items-center space-x-4">
         <label for="true" class="text-gray-700 font-medium">{{'multiple'| transloco}}</label>
-        <input
-          id="true"
-          type="radio"
-          formControlName="solo"
-          value="false"
-          class=""
-        />
+        <input id="true" type="radio" formControlName="solo"  value="false"/>
         <label for="true">{{'yes'| transloco}}</label>
-        <input
-          id="false"
-          type="radio"
-          formControlName="solo"
-          value="true"
-          class=""
-        />
+        <input id="false" type="radio" formControlName="solo" value="true"/>
         <label for="false">{{'no'| transloco}}</label>
       </div>
-      <!-- Create event button -->
       <div class="flex justify-end">
-        <button
-          [routerLink]="['/events']"
-          type="submit"
-          class="inline-flex items-center justify-center px-6 py-3 mt-4 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-        >
-        {{'createEvent'| transloco}}
+        <button type="submit" class="btn-submit">
+          {{'createEvent'| transloco}}
         </button>
       </div>
     </form>
   </div>
 </div>
+<button (click)="back()" class="bg-purple-500 hover:bg-purple-700 text-white font-bold rounded-full w-12 h-12 flex items-center justify-center fixed bottom-8 left-8 focus:outline-none focus:shadow-outline">
+  <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+  </svg>
+</button>
+</div>
+
+<!-- TailwindCSS classes -->
+<style>
+  .input-field {
+    width: calc(100% - 2rem); 
+    padding: 0.75rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.375rem;
+    font-size: 1rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  }
+
+  .btn-show-hide {
+    user-select: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    border: 1px solid #4f46e5;
+    border-radius: 0.375rem;
+    background-color: #4f46e5;
+    color: white;
+    transition: background-color 0.3s ease-in-out;
+  }
+
+  .btn-show-hide:hover {
+    background-color: #4338ca;
+  }
+
+  .btn-submit {
+    padding: 1rem 1.5rem;
+    border: none;
+    border-radius: 0.375rem;
+    background-color: #4f46e5;
+    color: white;
+    transition: background-color 0.3s ease-in-out;
+  }
+
+  .btn-submit:hover {
+    background-color: #4338ca;
+  }
+</style>

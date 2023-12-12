@@ -1,19 +1,12 @@
-<div
-  class="flex flex-col items-center justify-center h-screen bg-gradient-to-b from-purple-500 to-pink-500"
->
+<div class="flex flex-col items-center justify-center min-h-screen bg-gradient-to-l from-purple-500 to-pink-500">
   <div class="sm:mx-auto sm:w-full sm:max-w-md">
-    <h2 class="mt-6 text-center text-3xl font-extrabold text-white">
-      {{'newAccount'| transloco}}
-    </h2>
+    <h2 class="mt-6 text-center text-5xl font-extrabold text-white">{{ 'newAccount' | transloco }}</h2>
   </div>
 
-  <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-    <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-      <form
-        (ngSubmit)="attemptRegister()"
-        [formGroup]="registerForm"
-        class="space-y-6"
-      >
+
+  <div class="mt-8">
+    <div class="bg-white py-8 px-4 shadow rounded-lg sm:px-10">
+      <form (ngSubmit)="attemptRegister()" [formGroup]="registerForm" class="space-y-6">
         <div>
           <label for="username" class="block font-bold text-gray-700">
             {{'username'| transloco}}
@@ -104,7 +97,7 @@
           >
           {{'register'| transloco}}
           </button>
-          <div class="text-sm">
+          <div class="text-sm ml-2">
             {{'already'| transloco}}
             <a
               class="ml-1 font-semibold text-purple-500 hover:text-purple-700"
@@ -118,3 +111,8 @@
     </div>
   </div>
 </div>
+<button (click)="back()" class="bg-purple-500 hover:bg-purple-700 text-white font-bold rounded-full w-12 h-12 flex items-center justify-center fixed bottom-8 left-8 focus:outline-none focus:shadow-outline">
+  <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+  </svg>
+</button>

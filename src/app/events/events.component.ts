@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DatabaseService } from '../database.service';
 import { Router } from '@angular/router';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-events',
@@ -10,7 +11,7 @@ import { Router } from '@angular/router';
 export class EventsComponent implements OnInit {
   public events: any[] = [];
 
-  constructor(private db: DatabaseService, private router: Router) {}
+  constructor(private db: DatabaseService, private router: Router,private location: Location,) {}
 
   ngOnInit(): void {
     this.db.getEvents().then((events) => {
@@ -26,5 +27,9 @@ export class EventsComponent implements OnInit {
 
   goToEventDetails(eventId: string): void {
     this.router.navigate(['/event', eventId]);
+  }
+
+  public back(){
+    this.location.back()
   }
 }

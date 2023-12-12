@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DatabaseService } from '../database.service';
 import { LoginService } from '../login.service';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-create-event',
@@ -16,14 +17,15 @@ export class CreateEventComponent {
     private fb: FormBuilder,
     private router: Router,
     private db: DatabaseService,
-    private login: LoginService
+    private login: LoginService,
+    private location: Location,
   ) {}
 
   public createEventForm = this.fb.group({
-    name: this.fb.control<string | null>(null, [Validators.required]),
+    name: this.fb.control<string>('', [Validators.required]),
     date: this.fb.control<string>('', [Validators.required]),
-    password: this.fb.control<string | null>(null, [Validators.required]),
-    solo: this.fb.control<boolean | null>(null, [Validators.required]),
+    password: this.fb.control<string>('', [Validators.required]),
+    solo: this.fb.control<boolean>(true, [Validators.required]),
   });
 
   get name() {
@@ -43,12 +45,19 @@ export class CreateEventComponent {
   }
 
   public createEvent(): void {
-    this.db.createEvent(
+    if (this.createEventForm.valid) {
+      this.db.createEvent(
       this.name?.value!,
       this.date?.value!,
       this.password?.value!,
       this.solo?.value!,
       this.login.username
-    );
+      ).then(() => this.location.back());
+    }else {
+      console.log('Handle errors');
+    }
+  }
+  public back(){
+    this.location.back()
   }
 }

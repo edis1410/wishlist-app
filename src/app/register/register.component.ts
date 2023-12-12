@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginService } from '../login.service';
 import { updateProfile } from '@angular/fire/auth';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-register',
@@ -13,7 +14,8 @@ export class RegisterComponent implements OnInit{
   constructor(
     private login: LoginService,
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private location: Location,
   ) {}
   ngOnInit(): void {
     this.login.logOut();
@@ -76,5 +78,9 @@ export class RegisterComponent implements OnInit{
 
   public onFail(): void {
     this.regErr = true;
+  }
+  
+  public back(){
+    this.location.back()
   }
 }

@@ -19,6 +19,7 @@ export class AppComponent{
   ngOnInit(){
     this.activeLang = this.tran.getActiveLang();
     this.availableLangs = this.tran.getAvailableLangs();
+    // this.logOutTry();
   }
 
   changeLang(lang: string){
@@ -28,7 +29,7 @@ export class AppComponent{
 
   public logOutTry(): void {
     this.login.logOut().then(
-      () => this.router.navigate(['login']),
+      () => this.router.navigate(['']),
       () => console.log('failed logout')
     );
   }

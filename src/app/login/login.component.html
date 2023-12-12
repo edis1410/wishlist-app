@@ -1,15 +1,17 @@
 <div
-  class="flex flex-col items-center justify-center h-screen bg-gradient-to-b from-purple-500 to-pink-500"
+  class="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-purple-500 to-pink-500"
 >
-  <h1 class="text-4xl text-white font-bold mb-8">{{'welcome'| transloco}}</h1>
+  <h1 class="text-5xl text-white font-bold mb-4 md:mb-8">
+    {{ "welcome" | transloco }}
+  </h1>
   <form
-    class="w-full max-w-md bg-white rounded-lg px-8 pt-6 pb-8 mb-4"
+    class="w-full max-w-md bg-white rounded-lg px-4 md:px-8 pt-6 pb-8 mb-4"
     [formGroup]="loginForm"
     (ngSubmit)="attemptLogin()"
   >
     <div class="mb-4">
       <label class="block text-gray-700 font-bold mb-2" for="email">
-        {{'email'| transloco}}
+        {{ "email" | transloco }}
       </label>
       <input
         id="email"
@@ -17,21 +19,23 @@
         formControlName="email"
         required
         class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-        placeholder="{{'emailPlaceholder'| transloco}}"
+        placeholder="{{ 'emailPlaceholder' | transloco }}"
       />
       <div
         class="text-red-600 mt-2"
         *ngIf="email?.invalid && (email?.dirty || email?.touched)"
       >
-        <div *ngIf="email?.errors?.['required']">{{'emailRequired'| transloco}}</div>
+        <div *ngIf="email?.errors?.['required']">
+          {{ "emailRequired" | transloco }}
+        </div>
         <div *ngIf="email?.errors?.['email']">
-          {{'emailFormat'| transloco}}
+          {{ "emailFormat" | transloco }}
         </div>
       </div>
     </div>
     <div class="mb-4">
       <label class="block text-gray-700 font-bold mb-2" for="password">
-        {{'password'| transloco}}
+        {{ "password" | transloco }}
       </label>
       <input
         id="password"
@@ -39,36 +43,41 @@
         formControlName="password"
         required
         class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-        placeholder="{{'passwordPlaceholder'| transloco}}"
+        placeholder="{{ 'passwordPlaceholder' | transloco }}"
       />
       <div
         class="text-red-600 mt-2"
         *ngIf="password?.invalid && (password?.dirty || password?.touched)"
       >
         <div *ngIf="password?.errors?.['required']">
-          {{'passwordRequired'| transloco}}
+          {{ "passwordRequired" | transloco }}
         </div>
       </div>
     </div>
     <div class="text-red-600 mb-2" *ngIf="logErr === true">
-      {{'loginError'| transloco}}
+      {{ "loginError" | transloco }}
     </div>
     <div class="flex items-center justify-between">
       <button
         type="submit"
         class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
       >
-      {{'login'| transloco}}
+        {{ "login" | transloco }}
       </button>
       <div class="text-sm">
-        {{'dontHave'| transloco}}
+        {{ "dontHave" | transloco }}
         <a
           class="ml-1 font-semibold text-purple-500 hover:text-purple-700"
           [routerLink]="['/register']"
         >
-        {{'registerHere'| transloco}}
+          {{ "registerHere" | transloco }}
         </a>
       </div>
     </div>
   </form>
 </div>
+<button (click)="back()" class="bg-purple-500 hover:bg-purple-700 text-white font-bold rounded-full w-12 h-12 flex items-center justify-center fixed bottom-8 left-8 focus:outline-none focus:shadow-outline">
+  <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+  </svg>
+</button>
