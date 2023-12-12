@@ -36,12 +36,17 @@ export class EventDetailsComponent {
       .then((data) => {
         this.eventName = data.name;
         this.eventSolo = data.solo;
-        this.eventDate = data.date;
+        this.eventDate = this.transformDateFormat(data.date);
         this.eventAdmin = data.admin;
       })
       .catch((error) => {
         console.error('Error fetching event details:', error);
       });
+  }
+
+  transformDateFormat(dateString: string): string {
+    const [year, month, day] = dateString.split('-');
+    return `${day}-${month}-${year}`;
   }
 
   ngOnDestroy() {

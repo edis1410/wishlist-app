@@ -1,12 +1,14 @@
-<div class="flex flex-col items-center min-h-screen bg-gradient-to-bl from-purple-500 to-pink-500 py-8 sm:py-12">
+<div class="flex flex-col items-center min-h-screen bg-gradient-to-bl from-purple-500 to-pink-500 py-8 sm:py-12 ">
   <p class="font-bold text-xl sm:text-2xl mt-7">{{ eventName }}</p>
+  <p class="sm:text-base mt-2">{{ eventDate }}</p>
+  <p class="sm:text-base mt-2">Created by: {{ eventAdmin }}</p>
 
   <div class="overflow-x-auto w-full sm:w-5/6 lg:w-3/4 mt-4 sm:mt-8">
     <table class="min-w-full">
       <thead>
         <tr>
           <th class="px-4 py-2 text-left">{{ 'itemName' | transloco }}</th>
-          <th class="px-4 py-2 text-left">{{ 'price' | transloco }}</th>
+          <th class="px-4 py-2 text-left w-8">{{ 'price' | transloco }}</th>
           <th class="px-4 py-2 text-left">{{ 'details' | transloco }}</th>
           <th class="px-4 py-2 text-left w-7">{{ 'link' | transloco }}</th>
           <th class="px-4 py-2 text-left">{{ 'user' | transloco }}</th>
@@ -15,20 +17,20 @@
       </thead>
       <tbody>
         <tr *ngFor="let item of items | keyvalue">
-          <td class="border px-4 py-2">{{ item.value.name }}</td>
-          <td class="border px-4 py-2">{{ item.value.price }}</td>
-          <td class="border px-4 py-2">{{ item.value.note }}</td>
-          <td class="border px-4 py-2">
+          <td class="border border-black px-4 py-2">{{ item.value.name }}</td>
+          <td class="border border-black px-4 py-2">{{ item.value.price }}</td>
+          <td class="border border-black px-4 py-2">{{ item.value.note }}</td>
+          <td class="border border-black px-4 py-2">
             <a
               [href]="item.value.link"
               target="_blank"
-              class="inline-block font-medium text-blue-600 hover:text-blue-800 transition duration-300 ease-in-out transform hover:-translate-y-1"
+              class="inline-block font-medium text-black hover:text-blue-800 transition duration-300 ease-in-out transform hover:-translate-y-1"
             >
               {{ 'link' | transloco }}
             </a>
           </td>
-          <td class="border px-4 py-2">{{ item.value.user }}</td>
-          <td class="border px-4 py-2">
+          <td class="border border-black px-4 py-2">{{ item.value.user }}</td>
+          <td class="border border-black px-4 py-2">
             <input
               class="ml-5 cursor-pointer"
               *ngIf="item.value.user != this.login.username"
@@ -53,7 +55,7 @@
 
   <div class="flex flex-col sm:flex-row justify-center items-center mt-8">
     <a
-    
+      *ngIf="eventAdmin == this.login.username"
       [routerLink]="['/', id, 'add-item']"
       class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mb-2 sm:mb-0 sm:mr-4"
     >

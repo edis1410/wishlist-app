@@ -19,6 +19,7 @@ export class AppComponent{
   ngOnInit(){
     this.activeLang = this.tran.getActiveLang();
     this.availableLangs = this.tran.getAvailableLangs();
+    // this.logOutTry();
   }
 
   changeLang(lang: string){
