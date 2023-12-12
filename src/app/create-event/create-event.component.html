@@ -1,4 +1,5 @@
-<div class="flex justify-center mt-28">
+<div class="flex flex-col min-h-screen items-center bg-gradient-to-bl from-purple-500 to-pink-500">
+  <div class="flex w-full justify-center mt-28">
   <div class="w-full max-w-lg bg-white rounded-lg shadow-md">
     <h2 class="px-6 py-4 text-2xl font-bold">{{'createEventTitle'| transloco}}</h2>
     <form class="px-6 py-4 space-y-4" [formGroup]="createEventForm" (ngSubmit)="createEvent()">
@@ -39,6 +40,7 @@
     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
   </svg>
 </button>
+</div>
 
 <!-- TailwindCSS classes -->
 <style>
