@@ -29,6 +29,7 @@
     "username": "Username",
     "error": "Something went wrong. Please try again.",
     "already": "Already have an account?",
+    "passwordMatch":"The password does not match in both fields.",
     "loginHere": "Log in here!",
 
     "hello": "Hello",

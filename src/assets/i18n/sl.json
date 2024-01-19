@@ -12,7 +12,7 @@
     "createEvent": "Ustvari dogodek",
     "signout": "Odjava",
 
-    "welcome": "Dobrodošel nazaj!",
+    "welcome": "Dobrodošli nazaj!",
     "email": "E-mail",
     "emailPlaceholder": "Vnesi svoj E-mail naslov",
     "emailRequired": "Vnos E-mail-a je obvezen",
@@ -29,9 +29,10 @@
     "username": "Uporabniško ime",
     "error": "Nekaj je šlo narobe. Poskusi ponovno.",
     "already": "Že imaš račun?",
+    "passwordMatch":"Geslo se ne ujema.",
     "loginHere": "Vpiši se tukaj!",
 
-    "hello": "Zdravo",
+    "hello": "Pozdravljen",
     "joinEvent": "Pridruži se dogodku",
     "joinEventButton": "Pridruži se",
     "myEvents": "Moji dogodki",

@@ -22,6 +22,7 @@ export class RegisterComponent implements OnInit{
   }
 
   public regErr: boolean = false;
+  public pass: boolean = false;
 
   public registerForm = this.fb.group({
     username: this.fb.control<string | null>(null, [
@@ -56,7 +57,8 @@ export class RegisterComponent implements OnInit{
   }
 
   public attemptRegister(): void {
-    if (this.registerForm.valid && this.password?.value === this.passwordCheck?.value) {
+    
+    if (this.registerForm.valid && this.password?.value == this.passwordCheck?.value) {
       this.login.register(this.email?.value!, this.password?.value!)
       .then((userCredential) => { 
         const user = userCredential.user;
@@ -68,7 +70,7 @@ export class RegisterComponent implements OnInit{
         const errorMessage = error.message;
       });
     } else {
-      console.log('Passwords do not match');
+      this.pass = true;
     }
   }
 
