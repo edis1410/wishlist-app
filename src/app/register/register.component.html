@@ -1,14 +1,13 @@
-<div class="flex flex-col items-center justify-center min-h-screen bg-gradient-to-l from-purple-500 to-pink-500">
+<div class="flex flex-col items-center justify-center min-h-screen">
   <div class="sm:mx-auto sm:w-full sm:max-w-md">
-    <h2 class="mt-6 text-center text-5xl font-extrabold text-white">{{ 'newAccount' | transloco }}</h2>
+    <h2 class="mt-6 text-center text-5xl font-bold ">{{ 'newAccount' | transloco }}</h2>
   </div>
 
 
   <div class="mt-8">
-    <div class="bg-white py-8 px-4 shadow rounded-lg sm:px-10">
-      <form (ngSubmit)="attemptRegister()" [formGroup]="registerForm" class="space-y-6">
+      <form (ngSubmit)="attemptRegister()" [formGroup]="registerForm" class="form-control bg-base-100 py-8 px-10 shadow-xl rounded-lg space-y-6">
         <div>
-          <label for="username" class="block font-bold text-gray-700">
+          <label for="username" class="block font-bold ">
             {{'username'| transloco}}
           </label>
           <div class="mt-1">
@@ -17,13 +16,13 @@
               id="username"
               formControlName="username"
               required
-              class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              class="input input-ghost w-full max-w-s bg-base-300 "
             />
           </div>
         </div>
 
         <div>
-          <label for="email" class="block font-bold text-gray-700">
+          <label for="email" class="block font-bold ">
             {{'email'| transloco}}
           </label>
           <div class="mt-1">
@@ -32,13 +31,13 @@
               type="email"
               formControlName="email"
               required
-              class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              class="input input-ghost w-full max-w-s bg-base-300 "
             />
           </div>
         </div>
 
         <div>
-          <label for="password" class="block font-bold text-gray-700">
+          <label for="password" class="block font-bold ">
             {{'password'| transloco}}
           </label>
           <div class="mt-1">
@@ -47,13 +46,13 @@
               type="password"
               formControlName="password"
               required
-              class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              class="input input-ghost w-full max-w-s bg-base-300 "
             />
           </div>
         </div>
 
         <div>
-          <label for="passwordCheck" class="block font-bold text-gray-700">
+          <label for="passwordCheck" class="block font-bold ">
             {{'confirmPassword'| transloco}}
           </label>
           <div class="mt-1">
@@ -62,7 +61,7 @@
               type="password"
               formControlName="passwordCheck"
               required
-              class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              class="input input-ghost w-full max-w-s bg-base-300 "
             />
           </div>
         </div>
@@ -94,14 +93,14 @@
         <div class="flex items-center justify-between">
           <button
             type="submit"
-            class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            class="btn bg-primary hover:bg-secondary"
           >
           {{'register'| transloco}}
           </button>
-          <div class="text-sm ml-2">
+          <div class="text-sm ml-4 ">
             {{'already'| transloco}}
             <a
-              class="ml-1 font-semibold text-purple-500 hover:text-purple-700"
+              class="ml-1 font-semibold text-secondary hover:text-accent"
               [routerLink]="['/login']"
             >
             {{'loginHere'| transloco}}
@@ -109,10 +108,9 @@
           </div>
         </div>
       </form>
-    </div>
   </div>
 </div>
-<button (click)="back()" class="bg-purple-500 hover:bg-purple-700 text-white font-bold rounded-full w-12 h-12 flex items-center justify-center fixed bottom-8 left-8 focus:outline-none focus:shadow-outline">
+<button (click)="back()" class="bg-primary hover:bg-secondary font-bold rounded-full w-12 h-12 flex items-center justify-center fixed bottom-8 left-8">
   <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
   </svg>

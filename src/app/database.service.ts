@@ -36,7 +36,8 @@ export class DatabaseService {
   constructor(private login: LoginService) {}
 
   private generateRandomId(): string {
-    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    const characters =
+      'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     let randomId = '';
     const idLength = 8;
 
@@ -53,7 +54,7 @@ export class DatabaseService {
     date: string,
     password: string,
     solo: boolean,
-    admin: string,
+    admin: string
   ): Promise<void> {
     const id = this.generateRandomId();
     await setDoc(doc(this.db, 'events', id), {
@@ -69,11 +70,11 @@ export class DatabaseService {
 
   public async getEvent(eventId: string): Promise<any> {
     const eventDetails: any[] = [];
-  
+
     try {
       const eventDocRef = doc(this.db, 'events', eventId);
       const eventDocSnapshot = await getDoc(eventDocRef);
-  
+
       if (eventDocSnapshot.exists()) {
         return eventDocSnapshot.data();
       } else {
@@ -83,6 +84,27 @@ export class DatabaseService {
     } catch (error) {
       console.error('Error fetching event:', error);
       throw error;
+    }
+  }
+
+  public async editEvent(
+    eventId: string,
+    name: string,
+    date: string,
+    password: string,
+    solo: boolean
+  ): Promise<void> {
+    const eventRef = doc(this.db, 'events', eventId);
+    try {
+      await updateDoc(eventRef, {
+        name: name,
+        date: date,
+        password: password,
+        solo: solo,
+      });
+      console.log('Event successfully updated');
+    } catch (error) {
+      console.error('Error updating event: ', error);
     }
   }
 
@@ -100,11 +122,8 @@ export class DatabaseService {
     });
   }
 
-  public async leaveEvent(id:string): Promise<void> {
-    const q = query(
-      collection(this.db, 'events'),
-      where('id', '==', id)
-    );
+  public async leaveEvent(id: string): Promise<void> {
+    const q = query(collection(this.db, 'events'), where('id', '==', id));
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach(async (document) => {
       const eventData = document.data();
@@ -116,15 +135,12 @@ export class DatabaseService {
     });
   }
 
-  public async deleteEvent(id:string): Promise<void> {
-    const q = query(
-      collection(this.db, 'events'),
-      where('id', '==', id)
-    );
+  public async deleteEvent(id: string): Promise<void> {
+    const q = query(collection(this.db, 'events'), where('id', '==', id));
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach(async (document) => {
       const item = doc(this.db, 'events', document.id);
-      await deleteDoc(item);   
+      await deleteDoc(item);
     });
   }
 
@@ -135,7 +151,7 @@ export class DatabaseService {
       where('users', 'array-contains', this.login.username)
     );
     const querySnapshot = await getDocs(q);
-    querySnapshot.forEach((doc) => {      
+    querySnapshot.forEach((doc) => {
       const eventData = doc.data();
       const name = eventData['name'];
       eventsList.push(eventData);
@@ -145,16 +161,29 @@ export class DatabaseService {
 
   public async getItems(id: string): Promise<any[]> {
     const eventsList: any[] = [];
-    const q = query(
-      collection(this.db, 'items'),
-      where('event', '==', id)
-    );
+    const q = query(collection(this.db, 'items'), where('event', '==', id));
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
       eventsList.push(doc.data());
     });
-    
+
     return eventsList;
+  }
+
+  public async getItem(itemId: string): Promise<any> {
+    const itemRef = doc(this.db, 'items', itemId);
+    try {
+      const docSnap = await getDoc(itemRef);
+      if (docSnap.exists()) {
+        return docSnap.data();
+      } else {
+        console.log('No such item!');
+        return null;
+      }
+    } catch (error) {
+      console.error('Error getting item: ', error);
+      throw error;
+    }
   }
 
   public async addItem(
@@ -162,7 +191,7 @@ export class DatabaseService {
     price: number,
     note: string,
     link: string,
-    event: string,
+    event: string
   ): Promise<void> {
     const id = this.generateRandomId();
     await setDoc(doc(this.db, 'items', id), {
@@ -175,21 +204,40 @@ export class DatabaseService {
       user: this.login.username,
     });
   }
-  public async deleteItem(id:string): Promise<void> {
-    const q = query(
-      collection(this.db, 'items'),
-      where('id', '==', id)
-    );
+
+  public async editItem(
+    itemId: string,
+    name: string,
+    price: number,
+    note: string,
+    link: string
+  ): Promise<void> {
+    const itemRef = doc(this.db, 'items', itemId);
+    try {
+      await updateDoc(itemRef, {
+        name: name,
+        price: price,
+        note: note,
+        link: link,
+      });
+      console.log('Item successfully updated');
+    } catch (error) {
+      console.error('Error updating item: ', error);
+    }
+  }
+
+  public async deleteItem(id: string): Promise<void> {
+    const q = query(collection(this.db, 'items'), where('id', '==', id));
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach(async (document) => {
       const item = doc(this.db, 'items', document.id);
-      await deleteDoc(item).then(() => location.reload());   
+      await deleteDoc(item).then(() => location.reload());
     });
   }
 
   public async updateBought(id: string, b: boolean) {
     await updateDoc(doc(this.db, 'items', id), {
-      bought: !b
-    }).then(() => location.reload());   
+      bought: !b,
+    }).then(() => location.reload());
   }
 }

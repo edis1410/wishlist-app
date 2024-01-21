@@ -1,47 +1,34 @@
-<nav class="px-4 sm:px-8 py-2 dark:bg-gray-900 fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600 h-14">
-  <div class="container mx-auto flex items-center justify-between">
-    <a routerLink="dashboard" class="text-xl font-semibold text-gray-900 dark:text-white">
-      Wishlist App
-    </a>
-    <div *ngIf="login.loggedIn" class="flex">
-      <div class="relative">
-        <!-- User Dropdown -->
-        <button type="button" class="flex items-center justify-center w-10 h-10 rounded-full bg-gray-800 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" aria-expanded="false" (click)="dropdownToggle()" (clickOutside)="showDropdown = false">
-          <img class="w-8 h-8 rounded-full" src="../favicon.ico" alt="user photo">
-        </button>
-        <div *ngIf="showDropdown" class="absolute z-50 mt-4 right-0 w-48 py-2 bg-white rounded shadow dark:bg-gray-700 dark:divide-gray-600">
-          <!-- User Dropdown Content -->
-          <div class="px-4 py-3 border-b border-gray-200 dark:border-gray-600">
-            <p class="text-sm font-medium text-gray-900 truncate dark:text-white">{{login.username}}</p>
-            <p class="text-sm text-gray-500 dark:text-gray-400">{{login.email}}</p>
+<html data-theme="cupcake">
+  <div class="navbar bg-base-200">
+    <div class="flex-1">
+      <a class="btn btn-ghost text-xl " routerLink="dashboard">WishlistApp</a>
+    </div>
+    <div class="flex-none">
+      <div class="dropdown dropdown-end mr-3">
+        <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
+          <div class="w-10 rounded-full content-center text-3xl">
+            🌍
           </div>
-          <ul class="py-1">
-            <li>
-              <a routerLink="dashboard" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white">{{'dashboard'| transloco}}</a>
-            </li>
-            <li>
-              <a routerLink="events" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white">{{'events'| transloco}}</a>
-            </li>
-            <li>
-              <a routerLink="create-event" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white">{{'createEvent'| transloco}}</a>
-            </li>
-            <li>
-              <a class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white cursor-pointer" (click)="logOutTry()">{{'signout'| transloco}}</a>
-            </li>
-          </ul>
         </div>
+        <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-36">
+          <li><a class="text-xl" (click)="changeLang('sl')">🇸🇮 Slo</a></li>
+          <li><a class="text-xl"(click)="changeLang('en')">🇬🇧 Eng</a></li>
+        </ul>
+      </div>
+      <div *ngIf="login.loggedIn" class="dropdown dropdown-end mr-6">
+        <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
+          <div class="w-10 rounded-full content-center text-3xl">
+            👤
+          </div>
+        </div>
+        <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+          <li class="text-2xl p-2">{{login.username}}</li>
+          <li><a class="text-lg" routerLink="events">{{'events'| transloco}}</a></li>
+          <li><a class="text-lg" routerLink="create-event">{{'createEvent'| transloco}}</a></li>
+          <li><a class="text-lg" (click)="logOutTry()">{{'signout'| transloco}}</a></li>
+        </ul>
       </div>
     </div>
-    <!-- Language Buttons (Always visible) -->
-    <div class="sm:flex hidden">
-      <button class="flex border bg-cover bg-center w-8 h-5 ml-5" (click)="changeLang('sl')" style="background-image: url('../assets/images/slo.png')"></button>
-      <button class="flex border bg-cover bg-center w-8 h-5 ml-3" (click)="changeLang('en')" style="background-image: url('../assets/images/uk.png')"></button>
-    </div>
-    <!-- Language Buttons for Small Screens -->
-    <div class="sm:hidden">
-      <button class="flex border bg-cover bg-center w-8 h-5" (click)="changeLang('sl')" style="background-image: url('../assets/images/slo.png')"></button>
-      <button class="flex border bg-cover bg-center w-8 h-5" (click)="changeLang('en')" style="background-image: url('../assets/images/uk.png')"></button>
-    </div>
   </div>
-</nav>
 <router-outlet></router-outlet>
+</html>

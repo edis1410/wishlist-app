@@ -52,7 +52,7 @@ export class CreateEventComponent {
       this.password?.value!,
       this.solo?.value!,
       this.login.username
-      ).then(() => this.location.back());
+      );
     }else {
       console.log('Handle errors');
     }

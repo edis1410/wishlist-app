@@ -2,26 +2,32 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from './login.service';
 import { TranslocoService } from '@ngneat/transloco';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent{
+export class AppComponent {
   title = 'wishlist-app';
   public showDropdown = false;
-  availableLangs: string[] | { id: string; label: string; }[] | undefined;
+  availableLangs: string[] | { id: string; label: string }[] | undefined;
   activeLang: string | undefined;
 
-  constructor(public login: LoginService, private router: Router, private tran: TranslocoService) {}
+  constructor(
+    public login: LoginService,
+    private router: Router,
+    private tran: TranslocoService,
+    private location: Location
+  ) {}
 
-  ngOnInit(){
+  ngOnInit() {
     this.activeLang = this.tran.getActiveLang();
     this.availableLangs = this.tran.getAvailableLangs();
   }
 
-  changeLang(lang: string){
+  changeLang(lang: string) {
     this.tran.setActiveLang(lang);
     this.activeLang = lang;
   }
@@ -35,5 +41,8 @@ export class AppComponent{
 
   public dropdownToggle(): void {
     this.showDropdown = !this.showDropdown;
+  }
+  public back() {
+    this.location.back();
   }
 }

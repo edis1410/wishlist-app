@@ -1,16 +1,16 @@
 <div
-  class="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-purple-500 to-pink-500"
+  class="flex flex-col items-center justify-center min-h-screen"
 >
-  <h1 class="text-5xl text-white font-bold mb-4 md:mb-8">
+  <h1 class="text-5xl font-bold mb-8 ">
     {{ "welcome" | transloco }}
   </h1>
   <form
-    class="w-full max-w-md bg-white rounded-lg px-4 md:px-8 pt-6 pb-8 mb-4"
+    class="form-control bg-base-100 py-8 px-10 shadow-xl rounded-lg"
     [formGroup]="loginForm"
     (ngSubmit)="attemptLogin()"
   >
     <div class="mb-4">
-      <label class="block text-gray-700 font-bold mb-2" for="email">
+      <label class="block font-bold mb-2 " for="email">
         {{ "email" | transloco }}
       </label>
       <input
@@ -18,7 +18,7 @@
         type="email"
         formControlName="email"
         required
-        class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        class="input input-ghost w-full max-w-s bg-base-300 "
         placeholder="{{ 'emailPlaceholder' | transloco }}"
       />
       <div
@@ -34,7 +34,7 @@
       </div>
     </div>
     <div class="mb-4">
-      <label class="block text-gray-700 font-bold mb-2" for="password">
+      <label class="block font-bold mb-2" for="password">
         {{ "password" | transloco }}
       </label>
       <input
@@ -42,7 +42,7 @@
         type="password"
         formControlName="password"
         required
-        class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        class="input input-ghost w-full max-w-s bg-base-300"
         placeholder="{{ 'passwordPlaceholder' | transloco }}"
       />
       <div
@@ -60,14 +60,14 @@
     <div class="flex items-center justify-between">
       <button
         type="submit"
-        class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+        class="btn bg-primary hover:bg-secondary"
       >
         {{ "login" | transloco }}
       </button>
-      <div class="text-sm">
+      <div class="text-sm  ml-2">
         {{ "dontHave" | transloco }}
         <a
-          class="ml-1 font-semibold text-purple-500 hover:text-purple-700"
+          class="ml-1 font-semibold text-secondary hover:text-accent"
           [routerLink]="['/register']"
         >
           {{ "registerHere" | transloco }}
@@ -76,7 +76,7 @@
     </div>
   </form>
 </div>
-<button (click)="back()" class="bg-purple-500 hover:bg-purple-700 text-white font-bold rounded-full w-12 h-12 flex items-center justify-center fixed bottom-8 left-8 focus:outline-none focus:shadow-outline">
+<button (click)="back()" class="bg-primary hover:bg-secondary font-bold rounded-full w-12 h-12 flex items-center justify-center fixed bottom-8 left-8">
   <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
   </svg>

@@ -10,9 +10,11 @@ const routes: Routes = [
   { path: 'dashboard', title: 'Dashboard', canActivate: [() => inject(AuthGuardService).canActivate()], loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule) },
   { path: 'events', title: 'Events', canActivate: [() => inject(AuthGuardService).canActivate()], loadChildren: () => import('./events/events.module').then(m => m.EventsModule) },
   { path: 'create-event', title: 'Create event', canActivate: [() => inject(AuthGuardService).canActivate()], loadChildren: () => import('./create-event/create-event.module').then(m => m.CreateEventModule) },
+  { path: 'edit-event/:id', title: 'Edit event', canActivate: [() => inject(AuthGuardService).canActivate()], loadChildren: () => import('./edit-event/edit-event.module').then(m => m.EditEventModule) },
   { path: 'join-event', title: 'Join event', canActivate: [() => inject(AuthGuardService).canActivate()], loadChildren: () => import('./join-event/join-event.module').then(m => m.JoinEventModule) },
   { path: 'event/:id', title: 'Event', canActivate: [() => inject(AuthGuardService).canActivate()], loadChildren: () => import('./event-details/event-details.module').then(m => m.EventDetailsModule)  },
   { path: ':id/add-item', title: 'Add item', canActivate: [() => inject(AuthGuardService).canActivate()], loadChildren: () => import('./add-item/add-item.module').then(m => m.AddItemModule) },
+  { path: 'edit-item/:id', title: 'Edit item', canActivate: [() => inject(AuthGuardService).canActivate()], loadChildren: () => import('./edit-item/edit-item.module').then(m => m.EditItemModule) },
   { path: '**', title: 'Page not found', loadChildren: () => import('./not-found/not-found.module').then((m) => m.NotFoundModule),}, 
 ];
 

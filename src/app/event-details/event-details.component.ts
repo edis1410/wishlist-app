@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { DatabaseService } from '../database.service';
 import { LoginService } from '../login.service';
@@ -19,7 +19,9 @@ export class EventDetailsComponent {
   public eventSolo: boolean | undefined;
   public eventDate: string | undefined;
   public eventAdmin: string | undefined;
+
   constructor(
+    private router: Router,
     private route: ActivatedRoute,
     private db: DatabaseService,
     public login: LoginService,
@@ -54,15 +56,19 @@ export class EventDetailsComponent {
   }
 
   public leaveEvent(): void {
-    this.db.leaveEvent(this.id!);
+    this.db.leaveEvent(this.id!).then(() => this.location.back());
   }
 
   public deleteEvent(): void {
-    this.db.deleteEvent(this.id!);
+    this.db.deleteEvent(this.id!).then(() => this.location.back());;
   }
   
   public deleteItem(idItem: string): void {
     this.db.deleteItem(idItem);
+  }
+
+  public editItem(idItem: string): void {
+    this.router.navigate(['/edit-item', idItem]);
   }
 
   public updateBought(idItem: string, bought: boolean) {
@@ -70,5 +76,8 @@ export class EventDetailsComponent {
   }
   public back(){
     this.location.back()
+  }
+  editEvent(eventId: string): void {
+    this.router.navigate(['/edit-event', eventId]);
   }
 }

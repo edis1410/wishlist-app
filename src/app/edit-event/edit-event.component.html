@@ -1,0 +1,84 @@
+<div class="flex flex-col min-h-screen items-center bg-gradient-to-bl from-purple-300 to-pink-300">
+    <div class="flex w-full justify-center mt-28">
+    <div class="w-full max-w-lg bg-white rounded-lg shadow-md">
+      <h2 class="px-6 py-4 text-2xl font-bold">{{'editEvent'| transloco}}</h2>
+      <form class="px-6 py-4 space-y-4" [formGroup]="eventForm" (ngSubmit)="onSubmit()">
+        <div>
+          <label for="name" class="block text-gray-700 font-medium mb-2">{{'eventName'| transloco}}</label>
+          <input id="name" type="text" formControlName="name"  class="input-field" placeholder="{{'eventNamePlaceholder'| transloco}}" required/>
+        </div>
+        <div>
+          <label for="date" class="block text-gray-700 font-medium mb-2">{{'date'| transloco}}</label>
+          <input id="date" type="date" formControlName="date" required class="input-field" />
+        </div>
+        <div>
+          <label for="password" class="block text-gray-700 font-medium mb-2">{{'eventPassword'| transloco}}</label>
+          <div class="flex items-center space-x-2">
+            <input id="password" [type]="show ? 'text' : 'password'" formControlName="password" required class="input-field" placeholder="{{'eventPassPlaceholder'| transloco}}" />
+            <a class="btn-show-hide" (click)="passwordShow()">
+              {{'showHidePass'| transloco}}
+            </a>
+          </div>
+        </div>
+        <div class="flex items-center space-x-4">
+          <label for="true" class="text-gray-700 font-medium">{{'multiple'| transloco}}</label>
+          <input id="true" type="radio" formControlName="solo"  value="false"/>
+          <label for="true">{{'yes'| transloco}}</label>
+          <input id="false" type="radio" formControlName="solo" value="true"/>
+          <label for="false">{{'no'| transloco}}</label>
+        </div>
+        <div class="flex justify-end">
+          <button type="submit" class="btn-submit">
+            {{'editEvent'| transloco}}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <button (click)="back()" class="bg-purple-500 hover:bg-purple-700 text-white font-bold rounded-full w-12 h-12 flex items-center justify-center fixed bottom-8 left-8 focus:outline-none focus:shadow-outline">
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+    </svg>
+  </button>
+  </div>
+  
+  <!-- TailwindCSS classes -->
+  <style>
+    .input-field {
+      width: calc(100% - 2rem); 
+      padding: 0.75rem;
+      border: 1px solid #e2e8f0;
+      border-radius: 0.375rem;
+      font-size: 1rem;
+      transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    }
+  
+    .btn-show-hide {
+      user-select: none;
+      cursor: pointer;
+      padding: 0.5rem;
+      border: 1px solid #4f46e5;
+      border-radius: 0.375rem;
+      background-color: #4f46e5;
+      color: white;
+      transition: background-color 0.3s ease-in-out;
+    }
+  
+    .btn-show-hide:hover {
+      background-color: #4338ca;
+    }
+  
+    .btn-submit {
+      padding: 1rem 1.5rem;
+      border: none;
+      border-radius: 0.375rem;
+      background-color: #4f46e5;
+      color: white;
+      transition: background-color 0.3s ease-in-out;
+    }
+  
+    .btn-submit:hover {
+      background-color: #4338ca;
+    }
+  </style>
+  

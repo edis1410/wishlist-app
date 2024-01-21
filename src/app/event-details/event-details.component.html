@@ -1,9 +1,9 @@
-<div class="flex flex-col items-center min-h-screen bg-gradient-to-bl from-purple-300 to-pink-300 py-8 sm:py-12 ">
+<div class="flex flex-col items-center min-h-screen py-8">
   <p class="font-bold text-xl sm:text-2xl mt-7">{{ eventName }}</p>
-  <p class="sm:text-base mt-2">{{ eventDate }}</p>
-  <p class="sm:text-base mt-2">{{ 'createdby' | transloco }} {{ eventAdmin }}</p>
-
-  <div class="overflow-x-auto w-full sm:w-5/6 lg:w-3/4 mt-4 sm:mt-8">
+  <p class="mt-2">{{ eventDate }}</p>
+  <p class="mt-2">{{ 'createdby' | transloco }} {{ eventAdmin }}</p>
+  
+  <div class="overflow-x-auto w-5/6 sm:2/3 mt-4">
     <table class="min-w-full">
       <thead>
         <tr>
@@ -17,22 +17,22 @@
       </thead>
       <tbody>
         <tr *ngFor="let item of items | keyvalue">
-          <td class="border border-black px-4 py-2">{{ item.value.name }}</td>
-          <td class="border border-black px-4 py-2">{{ item.value.price }}</td>
-          <td class="border border-black px-4 py-2">{{ item.value.note }}</td>
-          <td class="border border-black px-4 py-2">
+          <td class="border border-primary px-4 py-2">{{ item.value.name }}</td>
+          <td class="border border-primary px-4 py-2">{{ item.value.price }}</td>
+          <td class="border border-primary px-4 py-2">{{ item.value.note }}</td>
+          <td class="border border-primary px-4 py-2">
             <a
               [href]="item.value.link"
               target="_blank"
-              class="inline-block font-medium text-black hover:text-blue-800 transition duration-300 ease-in-out transform hover:-translate-y-1"
+              class="inline-block font-medium text-secondary hover:text-accent transition duration-300 ease-in-out transform hover:-translate-y-1"
             >
               {{ 'link' | transloco }}
             </a>
           </td>
-          <td class="border border-black px-4 py-2">{{ item.value.user }}</td>
-          <td class="border border-black px-4 py-2">
+          <td class="border border-primary px-4 py-2">{{ item.value.user }}</td>
+          <td class="border border-primary px-4 py-2">
             <input
-              class="ml-5 cursor-pointer"
+              class="checkbox checkbox-primary cursor-pointer"
               *ngIf="item.value.user != this.login.username"
               [checked]="item.value.bought"
               type="checkbox"
@@ -42,8 +42,15 @@
           <td class="px-4 py-2">
             <button
               *ngIf="item.value.user == this.login.username"
+              (click)="editItem(item.value.id)"
+              class="btn bg-secondary hover:bg-secondary/90 font-bold mx-2 h-full"
+            >
+              {{ 'edit' | transloco }}
+            </button>
+            <button
+              *ngIf="item.value.user == this.login.username"
               (click)="deleteItem(item.value.id)"
-              class="bg-rose-500 hover:bg-rose-700 text-white font-bold py-1 px-2 rounded"
+              class="btn bg-accent hover:bg-accent/90 font-bold mx-2"
             >
               {{ 'delete' | transloco }}
             </button>
@@ -57,30 +64,34 @@
     <a
       *ngIf="eventAdmin == this.login.username"
       [routerLink]="['/', id, 'add-item']"
-      class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mb-2 sm:mb-0 sm:mr-4"
+      class="btn bg-primary hover:bg-primary/90 font-bold mx-2"
     >
     {{'addItem'| transloco}}
     </a>
     <button
+    *ngIf="this.login.username == eventAdmin"
+      (click)="editEvent(this.id!)"
+      class="btn bg-secondary hover:bg-secondary/90 font-bold mx-2"
+    >
+    {{'editEvent'| transloco}}
+    </button>
+    <button
       (click)="leaveEvent()"
-      [routerLink]="['/events']"
-      class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-2 sm:mb-0 sm:mr-4"
+      class="btn bg-accent hover:bg-accent/90 font-bold mx-2"
     >
     {{'leaveEvent'| transloco}}
     </button>
     <button
     *ngIf="this.login.username == eventAdmin"
       (click)="deleteEvent()"
-      [routerLink]="['/events']"
-      class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mb-2 sm:mb-0 sm:mr-4"
+      class="btn bg-base-300 hover:bg-base-200 font-bold mx-2"
     >
     {{'deleteEvent'| transloco}}
     </button>
   </div>
 </div>
-<button (click)="back()" class="bg-purple-500 hover:bg-purple-700 text-white font-bold rounded-full w-12 h-12 flex items-center justify-center fixed bottom-8 left-8 focus:outline-none focus:shadow-outline">
+<button (click)="back()"     class="bg-primary hover:bg-secondary font-bold rounded-full w-12 h-12 flex items-center justify-center fixed bottom-8 left-8">
   <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
   </svg>
 </button>
-

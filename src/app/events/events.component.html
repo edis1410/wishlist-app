@@ -1,32 +1,37 @@
-<div class="bg-gradient-to-bl from-purple-300 to-pink-300 min-h-screen">
-  <div class="container mx-auto px-4 py-8 w-3/4 sm:w-3/4 lg:w-3/4">
-    <h1 class="mt-16 text-3xl font-bold text-gray-800 mb-8">{{ 'myEvents' | transloco }}</h1>
-    <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-      <li *ngFor="let event of events" (click)="goToEventDetails(event.id)" class="event-card">
-        <div class="p-4">
-          <h2 class="text-lg font-bold text-gray-800">{{ event.name }}</h2>
-        </div>
+<div class="min-h-screen">
+  <div class="flex flex-col justify-center mx-auto px-4 py-8 w-3/4">
+    <h1
+      class="flex flex-col items-center mt-16 text-3xl font-bold  mb-8"
+    >
+      {{ "myEvents" | transloco }}
+    </h1>
+    <ul class="flex flex-col">
+      <li
+        *ngFor="let event of events"
+        (click)="goToEventDetails(event.id)" 
+        class="btn w-full flex flex-col cursor-pointer text-lg font-bold  mx-auto  max-w-sm rounded-lg bg-base-100 mt-4 py-4 px-8 shadow-xl"
+      >
+            {{ event.name }}
       </li>
     </ul>
   </div>
 </div>
-<button (click)="back()" class="bg-purple-500 hover:bg-purple-700 text-white font-bold rounded-full w-12 h-12 flex items-center justify-center fixed bottom-8 left-8 focus:outline-none focus:shadow-outline">
-  <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+<button
+  (click)="back()"
+  class="bg-primary hover:bg-secondary font-bold rounded-full w-12 h-12 flex items-center justify-center fixed bottom-8 left-8"
+>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    class="w-6 h-6"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+  >
+    <path
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+      d="M15 19l-7-7 7-7"
+    />
   </svg>
 </button>
-<!-- TailwindCSS classes -->
-<style>
-  .event-card {
-    background-color: #ffffff;
-    border-radius: 0.5rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
-    overflow: hidden;
-    transition: box-shadow 0.3s ease-in-out;
-    cursor: pointer;
-  }
-
-  .event-card:hover {
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15), 0 3px 6px rgba(0, 0, 0, 0.12);
-  }
-</style>
