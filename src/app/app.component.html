@@ -1,4 +1,5 @@
-<html data-theme="cupcake">
+<html data-theme="var(--data-choose-theme)">
+  <script src="https://cdn.jsdelivr.net/npm/theme-change@2.0.2/index.js"></script>
   <div class="overflow-hidden max-h-screen">
   <div class="navbar bg-base-200">
     <div class="flex-1">
@@ -31,7 +32,13 @@
       </div>
     </div>
   </div>
-  
+  <select data-choose-theme class="select fixed bottom-8 right-8" >
+		<option value="cupcake">🧁 Cupcake</option>
+		<option value="dark">🕶️ Dark</option>
+		<option value="light">💡 Light</option>
+    <option value="valentine">❤️ Valentine</option>
+    <option value="nord">❄️ Nord</option>
+	</select>
 <router-outlet></router-outlet>
 </div>
 </html>

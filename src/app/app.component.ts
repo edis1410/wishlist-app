@@ -3,7 +3,8 @@ import { Router } from '@angular/router';
 import { LoginService } from './login.service';
 import { TranslocoService } from '@ngneat/transloco';
 import { Location } from '@angular/common';
-
+import { themeChange } from 'theme-change'
+themeChange()
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -45,4 +46,5 @@ export class AppComponent {
   public back() {
     this.location.back();
   }
+
 }
