@@ -25,6 +25,7 @@
         </div>
         <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
           <li class="text-xl p-2 font-bold">{{login.username}}</li>
+          <li><a class="text-lg" routerLink="dashboard">{{'dashboard'| transloco}}</a></li>
           <li><a class="text-lg" routerLink="events">{{'events'| transloco}}</a></li>
           <li><a class="text-lg" routerLink="create-event">{{'createEvent'| transloco}}</a></li>
           <li><a class="text-lg" (click)="logOutTry()">{{'signout'| transloco}}</a></li>
@@ -34,8 +35,9 @@
   </div>
   <select data-choose-theme class="select fixed bottom-8 right-8" >
 		<option value="cupcake">🧁 Cupcake</option>
-		<option value="dark">🕶️ Dark</option>
-		<option value="light">💡 Light</option>
+		<option value="retro">🎞️ Retro</option>
+		<option value="lemonade">🍋 Lemonade</option>
+    <option value="autumn">🍂 Autumn</option>
     <option value="valentine">❤️ Valentine</option>
     <option value="nord">❄️ Nord</option>
 	</select>
