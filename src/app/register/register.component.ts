@@ -61,9 +61,9 @@ export class RegisterComponent implements OnInit{
     if (this.registerForm.valid && this.password?.value == this.passwordCheck?.value) {
       this.login.register(this.email?.value!, this.password?.value!)
       .then((userCredential) => { 
-        const user = userCredential.user;
-        updateProfile(user, {displayName: this.username?.value})
-        this.router.navigate(['dashboard']);
+        // const user = userCredential.user;
+        // updateProfile(user, {displayName: this.username?.value})
+        this.router.navigate(['login']);
       })
       .catch((error) => {
         const errorCode = error.code;
