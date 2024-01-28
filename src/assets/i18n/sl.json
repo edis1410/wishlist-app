@@ -1,7 +1,7 @@
 {
     "oops": "Opa!",
     "notFound": "Nismo dobili strani, ki ste jo iskali.",
-    "home": "Pojdi na domačo stran",
+    "home": "Pojdite na domačo stran",
 
     "landing": "Vpišite se v svoj profil ali ustvarite novega",
     "login": "Vpis",
@@ -13,15 +13,15 @@
     "signout": "Odjava",
 
     "welcome": "Dobrodošli nazaj!",
-    "email": "E-mail",
-    "emailPlaceholder": "Vnesite svoj E-mail naslov",
-    "emailRequired": "Vnos E-mail-a je obvezen",
-    "emailFormat": "Format E-mail-a je napačen",
+    "email": "E-poštni naslov",
+    "emailPlaceholder": "Vnesite svoj e-poštni naslov naslov",
+    "emailRequired": "Vnos e-poštnega naslova je obvezen",
+    "emailFormat": "Format e-poštnega naslova je napačen",
     "password": "Geslo",
-    "confirmPassword": "Potrditev gesla",
+    "confirmPassword": "Potrdite geslo",
     "passwordPlaceholder": "Vnesite geslo",
     "passwordRequired": "Vnos gesla je obvezen",
-    "loginError": "Napačen E-mail ali geslo",
+    "loginError": "Napačen e-poštni naslov ali geslo",
     "dontHave": "Še nimate računa?",
     "registerHere": "Registrirajte se tukaj!",
 
@@ -47,7 +47,7 @@
     "show": "Pokaži",
     "hide": "Skrij",
     "multiple": "Ali bo več ljudi prejelo darilo?",
-    "yes": "Ja",
+    "yes": "Da",
     "no": "Ne",
 
     "itemName": "Ime",
@@ -56,13 +56,13 @@
     "link": "Povezava",
     "user": "Uporabnik",
     "bought": "Kupljeno",
-    "delete": "Izbriši",
-    "addItem": "Dodaj izdelek",
-    "leaveEvent": "Zapusti dogodek",
-    "editEvent": "Uredi dogodek",
-    "editItem": "Uredi izdelek",
-    "edit": "Uredi",
-    "deleteEvent": "Izbriši dogodek",
+    "delete": "Izbrišite",
+    "addItem": "Dodajte izdelek",
+    "leaveEvent": "Zapustite dogodek",
+    "editEvent": "Uredite dogodek",
+    "editItem": "Uredite izdelek",
+    "edit": "Uredite",
+    "deleteEvent": "Izbrišite dogodek",
 
     "createdby": "Ustvaril je: "
 

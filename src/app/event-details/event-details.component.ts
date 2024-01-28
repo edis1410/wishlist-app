@@ -15,6 +15,7 @@ export class EventDetailsComponent {
   public id: string | undefined;
   private routeSub: Subscription | undefined;
   public items: any[] = [];
+  public users: any[] = [];
   public eventName: string | undefined;
   public eventSolo: boolean | undefined;
   public eventDate: string | undefined;
@@ -36,6 +37,7 @@ export class EventDetailsComponent {
     this.db
       .getEvent(this.id!)
       .then((data) => {
+        this.users = data.users;
         this.eventName = data.name;
         this.eventSolo = data.solo;
         this.eventDate = this.transformDateFormat(data.date);

@@ -4,7 +4,7 @@
   <p class="mt-2">{{ 'createdby' | transloco }} {{ eventAdmin }}</p>
   
   <div class="overflow-x-auto w-5/6 sm:2/3 mt-4">
-    <table class="min-w-full">
+    <table class="mx-auto">
       <thead>
         <tr>
           <th class="px-4 py-2 text-left">{{ 'itemName' | transloco }}</th>
@@ -30,9 +30,9 @@
             </a>
           </td>
           <td class="border border-primary px-4 py-2">{{ item.value.user }}</td>
-          <td class="border border-primary px-4 py-2">
+          <td class="border border-primary px-9 py-2">
             <input
-              class="checkbox checkbox-primary cursor-pointer"
+              class="checkbox checkbox-primary cursor-pointer mx-auto"
               *ngIf="item.value.user != this.login.username"
               [checked]="item.value.bought"
               type="checkbox"
@@ -41,16 +41,16 @@
           </td>
           <td class="px-4 py-2">
             <button
-              *ngIf="item.value.user == this.login.username"
+              *ngIf="item.value.user == this.login.username && (users.length <= 1 || eventSolo)"
               (click)="editItem(item.value.id)"
-              class="btn bg-secondary hover:bg-secondary/90 font-bold mx-2 h-full"
+              class="btn bg-secondary hover:bg-secondary/90 font-bold mx-2 w-20"
             >
               {{ 'edit' | transloco }}
             </button>
             <button
-              *ngIf="item.value.user == this.login.username"
+              *ngIf="item.value.user == this.login.username && (users.length <= 1 || eventSolo)"
               (click)="deleteItem(item.value.id)"
-              class="btn bg-accent hover:bg-accent/90 font-bold mx-2"
+              class="btn bg-accent hover:bg-accent/90 font-bold mx-2 w-20"
             >
               {{ 'delete' | transloco }}
             </button>
@@ -64,27 +64,27 @@
     <a
       *ngIf="eventAdmin == this.login.username"
       [routerLink]="['/', id, 'add-item']"
-      class="btn bg-primary hover:bg-primary/90 font-bold mx-2"
+      class="btn bg-primary hover:bg-primary/90 font-bold mx-2 mt-2 w-44"
     >
     {{'addItem'| transloco}}
     </a>
     <button
     *ngIf="this.login.username == eventAdmin"
       (click)="editEvent(this.id!)"
-      class="btn bg-secondary hover:bg-secondary/90 font-bold mx-2"
+      class="btn bg-secondary hover:bg-secondary/90 font-bold mx-2 mt-2 w-44"
     >
     {{'editEvent'| transloco}}
     </button>
     <button
       (click)="leaveEvent()"
-      class="btn bg-accent hover:bg-accent/90 font-bold mx-2"
+      class="btn bg-accent hover:bg-accent/90 font-bold mx-2 mt-2 w-44"
     >
     {{'leaveEvent'| transloco}}
     </button>
     <button
     *ngIf="this.login.username == eventAdmin"
       (click)="deleteEvent()"
-      class="btn bg-base-300 hover:bg-base-200 font-bold mx-2"
+      class="btn bg-base-300 hover:bg-base-200 font-bold mx-2 mt-2 w-44"
     >
     {{'deleteEvent'| transloco}}
     </button>
