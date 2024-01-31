@@ -14,7 +14,7 @@
 
     "welcome": "Dobrodošli nazaj!",
     "email": "E-poštni naslov",
-    "emailPlaceholder": "Vnesite svoj e-poštni naslov naslov",
+    "emailPlaceholder": "Vnesite svoj e-poštni naslov",
     "emailRequired": "Vnos e-poštnega naslova je obvezen",
     "emailFormat": "Format e-poštnega naslova je napačen",
     "password": "Geslo",
